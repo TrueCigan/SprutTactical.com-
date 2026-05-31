@@ -1,0 +1,1419 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SPRUT TACTICAL — Радіоелектронне обладнання</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@400;600;700&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #f0f2ee;
+      --bg2: #e4e8e0;
+      --bg3: #d8ddd3;
+      --surface: #ffffff;
+      --surface2: #f7f9f5;
+      --accent: #3d6b47;
+      --accent2: #2a4f32;
+      --accent-light: #c8dbc9;
+      --text: #1a1f18;
+      --text2: #4a5248;
+      --text3: #7a857a;
+      --border: #c8d0c2;
+      --red: #c0392b;
+      --font-display: 'Bebas Neue', sans-serif;
+      --font-heading: 'Barlow Condensed', sans-serif;
+      --font-body: 'Barlow', sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-body);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: rgba(240, 242, 238, 0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 5%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+    }
+
+    /* logo image */
+
+    .logo-text {
+      display: flex;
+      flex-direction: column;
+      line-height: 1;
+    }
+
+    .logo-text strong {
+      font-family: var(--font-display);
+      font-size: 1.3rem;
+      letter-spacing: 2px;
+      color: var(--text);
+    }
+
+    .logo-text span {
+      font-family: var(--font-heading);
+      font-size: 0.65rem;
+      letter-spacing: 4px;
+      color: var(--accent);
+      text-transform: uppercase;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-family: var(--font-heading);
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--text2);
+      text-decoration: none;
+      transition: color .2s;
+    }
+
+    .nav-links a:hover { color: var(--accent); }
+
+    .btn-nav {
+      background: var(--accent);
+      color: white !important;
+      padding: 8px 20px;
+      border-radius: 3px;
+      transition: background .2s !important;
+    }
+
+    .btn-nav:hover { background: var(--accent2) !important; color: white !important; }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 4px;
+    }
+    .hamburger span {
+      display: block;
+      width: 24px; height: 2px;
+      background: var(--text);
+      border-radius: 2px;
+      transition: .3s;
+    }
+
+    /* ── HERO ── */
+    #home {
+      min-height: 100vh;
+      padding: 64px 5% 0;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      gap: 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 60% 60% at 70% 50%, rgba(61,107,71,0.08) 0%, transparent 70%),
+        linear-gradient(160deg, var(--bg) 0%, var(--bg2) 100%);
+    }
+
+    .hero-grid {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(var(--border) 1px, transparent 1px),
+        linear-gradient(90deg, var(--border) 1px, transparent 1px);
+      background-size: 60px 60px;
+      opacity: 0.3;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      padding: 30px 0 80px;
+    }
+
+    .section-label {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-family: var(--font-heading);
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1.5rem;
+    }
+
+    .section-label::before {
+      content: '';
+      display: block;
+      width: 32px; height: 2px;
+      background: var(--accent);
+    }
+
+    h1 {
+      font-family: var(--font-display);
+      font-size: clamp(3.5rem, 7vw, 6rem);
+      line-height: 0.95;
+      letter-spacing: 2px;
+      margin-bottom: 1rem;
+    }
+
+    h1 .white { color: var(--text); }
+    h1 .green { color: var(--accent); }
+
+    .hero-sub {
+      font-family: var(--font-display);
+      font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+      letter-spacing: 3px;
+      color: var(--text2);
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-desc {
+      max-width: 460px;
+      color: var(--text2);
+      font-size: 1rem;
+      line-height: 1.7;
+      margin-bottom: 2.5rem;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: white;
+      padding: 14px 28px;
+      font-family: var(--font-heading);
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      text-decoration: none;
+      border-radius: 3px;
+      border: 2px solid var(--accent);
+      cursor: pointer;
+      transition: all .2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-primary:hover { background: var(--accent2); border-color: var(--accent2); }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--text);
+      padding: 14px 28px;
+      font-family: var(--font-heading);
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      text-decoration: none;
+      border-radius: 3px;
+      border: 2px solid var(--border);
+      cursor: pointer;
+      transition: all .2s;
+    }
+
+    .btn-secondary:hover { border-color: var(--accent); color: var(--accent); }
+
+    .hero-stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      margin-top: 3rem;
+      overflow: hidden;
+    }
+
+    .stat {
+      background: var(--surface);
+      padding: 20px 16px;
+      text-align: center;
+    }
+
+    .stat-num {
+      font-family: var(--font-display);
+      font-size: 2rem;
+      letter-spacing: 1px;
+      color: var(--accent);
+      display: block;
+    }
+
+    .stat-label {
+      font-family: var(--font-heading);
+      font-size: 0.6rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--text3);
+      margin-top: 2px;
+    }
+
+    .hero-visual {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .hero-radar {
+      width: 420px;
+      height: 420px;
+      position: relative;
+    }
+
+    .hero-radar svg {
+      width: 100%;
+      height: 100%;
+      opacity: 0.7;
+    }
+
+    /* ── SECTIONS COMMON ── */
+    section {
+      padding: 100px 5%;
+    }
+
+    .section-header {
+      margin-bottom: 3rem;
+    }
+
+    h2 {
+      font-family: var(--font-display);
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      letter-spacing: 2px;
+      line-height: 1;
+      color: var(--text);
+    }
+
+    /* ── FEATURES ── */
+    #features {
+      background: var(--bg2);
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    .features-left h2 {
+      margin-bottom: 1.5rem;
+    }
+
+    .features-left p {
+      color: var(--text2);
+      font-size: 1rem;
+      line-height: 1.8;
+      max-width: 420px;
+    }
+
+    .features-right {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      overflow: hidden;
+    }
+
+    .feature-card {
+      background: var(--surface);
+      padding: 32px 24px;
+      transition: background .2s;
+    }
+
+    .feature-card:hover { background: var(--surface2); }
+
+    .feature-icon {
+      width: 44px; height: 44px;
+      background: var(--accent-light);
+      border-radius: 6px;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 1rem;
+    }
+
+    .feature-icon svg { width: 22px; height: 22px; stroke: var(--accent); fill: none; stroke-width: 1.8; }
+
+    .feature-card h3 {
+      font-family: var(--font-heading);
+      font-size: 0.9rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--text);
+      margin-bottom: 8px;
+    }
+
+    .feature-card p {
+      font-size: 0.88rem;
+      color: var(--text2);
+      line-height: 1.6;
+    }
+
+    /* ── TRUST ── */
+    #trust {
+      background: var(--bg);
+    }
+
+    .trust-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    .trust-image {
+      border-radius: 6px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .trust-image-placeholder {
+      width: 100%;
+      aspect-ratio: 4/3;
+      background: linear-gradient(135deg, var(--bg3) 0%, var(--bg2) 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+    }
+
+    .trust-image-placeholder svg { width: 64px; height: 64px; stroke: var(--accent); fill: none; stroke-width: 1; opacity: 0.5; }
+    .trust-image-placeholder span { font-family: var(--font-heading); font-size: 0.75rem; letter-spacing: 3px; text-transform: uppercase; color: var(--text3); }
+
+    .trust-right h2 { margin-bottom: 1rem; }
+
+    .trust-right p {
+      color: var(--text2);
+      line-height: 1.8;
+      margin-bottom: 2rem;
+    }
+
+    .trust-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .trust-list li {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-family: var(--font-heading);
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 1px;
+      color: var(--text);
+    }
+
+    .trust-list li::before {
+      content: '';
+      width: 8px; height: 8px;
+      background: var(--accent);
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    /* ── CATALOG ── */
+    #catalog {
+      background: var(--bg2);
+    }
+
+    .catalog-header {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      margin-bottom: 3rem;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .catalog-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      overflow: hidden;
+    }
+
+    .product-card {
+      background: var(--surface);
+      transition: background .2s;
+      overflow: hidden;
+    }
+
+    .product-card:hover { background: var(--surface2); }
+
+    .product-img {
+      width: 100%;
+      aspect-ratio: 4/3;
+      background: linear-gradient(135deg, var(--bg3) 0%, var(--bg2) 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .product-img svg { width: 64px; height: 64px; stroke: var(--accent); fill: none; stroke-width: 1; opacity: 0.4; }
+
+    .product-tag {
+      position: absolute;
+      top: 12px; left: 12px;
+      font-family: var(--font-heading);
+      font-size: 0.6rem;
+      font-weight: 600;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      background: var(--accent);
+      color: white;
+      padding: 4px 10px;
+      border-radius: 2px;
+    }
+
+    .product-info { padding: 24px; }
+
+    .product-info h3 {
+      font-family: var(--font-heading);
+      font-size: 1.1rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      color: var(--text);
+      margin-bottom: 8px;
+    }
+
+    .product-info p {
+      font-size: 0.88rem;
+      color: var(--text2);
+      line-height: 1.6;
+    }
+
+    /* ── CONTACT CTA ── */
+    #contact {
+      background: var(--accent2);
+      color: white;
+      text-align: center;
+      padding: 100px 5%;
+    }
+
+    #contact .section-label {
+      color: var(--accent-light);
+      justify-content: center;
+    }
+
+    #contact .section-label::before { background: var(--accent-light); }
+
+    #contact h2 {
+      color: white;
+      margin-bottom: 1rem;
+    }
+
+    #contact p {
+      max-width: 520px;
+      margin: 0 auto 2.5rem;
+      color: rgba(255,255,255,0.75);
+      line-height: 1.7;
+    }
+
+    .contact-buttons {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn-white {
+      background: white;
+      color: var(--accent2);
+      padding: 14px 32px;
+      font-family: var(--font-heading);
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      text-decoration: none;
+      border-radius: 3px;
+      border: 2px solid white;
+      transition: all .2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-white:hover { background: transparent; color: white; }
+
+    .btn-outline-white {
+      background: transparent;
+      color: white;
+      padding: 14px 32px;
+      font-family: var(--font-heading);
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      text-decoration: none;
+      border-radius: 3px;
+      border: 2px solid rgba(255,255,255,0.4);
+      transition: all .2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-outline-white:hover { border-color: white; }
+
+    /* ── CONTACTS PAGE ── */
+    #contacts {
+      background: var(--bg);
+    }
+
+    .contacts-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: start;
+    }
+
+    .contact-info h2 { margin-bottom: 1rem; }
+
+    .contact-info p {
+      color: var(--text2);
+      line-height: 1.8;
+      margin-bottom: 2rem;
+    }
+
+    .contact-items {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .contact-item {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+    }
+
+    .contact-item-icon {
+      width: 42px; height: 42px;
+      background: var(--accent-light);
+      border-radius: 6px;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .contact-item-icon svg { width: 20px; height: 20px; stroke: var(--accent); fill: none; stroke-width: 1.8; }
+
+    .contact-item-text strong {
+      display: block;
+      font-family: var(--font-heading);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--text3);
+      margin-bottom: 3px;
+    }
+
+    .contact-item-text a,
+    .contact-item-text span {
+      font-size: 1rem;
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .contact-item-text a:hover { color: var(--accent); }
+
+    .contact-messengers {
+      margin-top: 2rem;
+    }
+
+    .contact-messengers strong {
+      font-family: var(--font-heading);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--text3);
+      display: block;
+      margin-bottom: 12px;
+    }
+
+    .messenger-links {
+      display: flex;
+      gap: 10px;
+    }
+
+    .messenger-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 18px;
+      border-radius: 4px;
+      font-family: var(--font-heading);
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: all .2s;
+      border: 1.5px solid var(--border);
+      color: var(--text);
+    }
+
+    .messenger-btn:hover { border-color: var(--accent); color: var(--accent); }
+
+    .messenger-btn svg { width: 16px; height: 16px; fill: currentColor; }
+
+    .contact-note {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-left: 4px solid var(--accent);
+      border-radius: 4px;
+      padding: 24px;
+    }
+
+    .contact-note h3 {
+      font-family: var(--font-heading);
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      color: var(--text);
+      margin-bottom: 12px;
+    }
+
+    .contact-note ol {
+      padding-left: 1.2rem;
+      color: var(--text2);
+      line-height: 1.9;
+      font-size: 0.95rem;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--text);
+      color: rgba(255,255,255,0.5);
+      padding: 40px 5%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .footer-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .footer-logo-icon {
+      width: 30px; height: 30px;
+      background: var(--accent);
+      border-radius: 3px;
+      display: flex; align-items: center; justify-content: center;
+    }
+
+    .footer-logo-icon svg { width: 18px; height: 18px; fill: white; }
+
+    .footer-logo strong {
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      letter-spacing: 2px;
+      color: white;
+    }
+
+    footer p { font-size: 0.82rem; }
+
+    /* ── MOBILE NAV ── */
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: 64px; left: 0; right: 0;
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      padding: 20px 5%;
+      z-index: 99;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .mobile-menu.open { display: flex; }
+
+    .mobile-menu a {
+      font-family: var(--font-heading);
+      font-size: 1rem;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--text2);
+      text-decoration: none;
+      padding: 12px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .mobile-menu a:last-child { border-bottom: none; color: var(--accent); }
+
+    /* ── ANIMATIONS ── */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      #home { grid-template-columns: 1fr; }
+      .hero-visual { display: none; }
+      .hero-stats { grid-template-columns: repeat(2, 1fr); }
+      .features-grid { grid-template-columns: 1fr; }
+      .trust-grid { grid-template-columns: 1fr; }
+      .catalog-grid { grid-template-columns: 1fr; }
+      .contacts-grid { grid-template-columns: 1fr; }
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+    }
+
+    @media (max-width: 600px) {
+      .hero-stats { grid-template-columns: repeat(2, 1fr); }
+      .features-right { grid-template-columns: 1fr; }
+    }
+
+    /* ── MODAL ── */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.5);
+      z-index: 200;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    .modal-overlay.open { display: flex; }
+
+    .modal {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      max-width: 560px;
+      width: 100%;
+      overflow: hidden;
+      animation: modalIn .25s ease;
+    }
+
+    @keyframes modalIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .modal-header {
+      padding: 24px 24px 16px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 12px;
+    }
+
+    .modal-tag {
+      font-family: var(--font-heading);
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: white;
+      background: var(--accent);
+      padding: 3px 10px;
+      border-radius: 2px;
+      margin-bottom: 8px;
+      display: inline-block;
+    }
+
+    .modal-header h3 {
+      font-family: var(--font-heading);
+      font-size: 1.4rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      color: var(--text);
+    }
+
+    .modal-close {
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px;
+      color: var(--text3);
+      font-size: 1.4rem;
+      line-height: 1;
+      flex-shrink: 0;
+      transition: color .2s;
+    }
+    .modal-close:hover { color: var(--text); }
+
+    .modal-body {
+      padding: 24px;
+    }
+
+    .modal-specs {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .modal-spec {
+      background: var(--bg2);
+      border-radius: 6px;
+      padding: 12px 14px;
+    }
+
+    .modal-spec strong {
+      display: block;
+      font-family: var(--font-heading);
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--text3);
+      margin-bottom: 3px;
+    }
+
+    .modal-spec span {
+      font-size: 0.9rem;
+      color: var(--text);
+      font-weight: 500;
+    }
+
+    .modal-desc {
+      font-size: 0.92rem;
+      color: var(--text2);
+      line-height: 1.7;
+      margin-bottom: 20px;
+    }
+
+    .modal-footer {
+      padding: 16px 24px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      gap: 10px;
+      justify-content: flex-end;
+    }
+
+    .product-card { cursor: pointer; }
+  </style>
+</head>
+<body>
+
+<!-- ── NAVIGATION ── -->
+<nav>
+  <a href="#home" class="logo">
+    <img src="logo.png" alt="SPRUT TACTICAL" style="height:40px; width:auto; display:block;">
+    <div class="logo-text">
+      <strong>SPRUT</strong>
+      <span>TACTICAL</span>
+    </div>
+  </a>
+
+  <ul class="nav-links">
+    <li><a href="#home">Головна</a></li>
+    <li><a href="#catalog">Каталог</a></li>
+    <li><a href="#contacts">Контакти</a></li>
+    <li><a href="#contacts" class="btn-nav">Зв'язатися</a></li>
+  </ul>
+
+  <div class="hamburger" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#home" onclick="closeMenu()">Головна</a>
+  <a href="#catalog" onclick="closeMenu()">Каталог</a>
+  <a href="#contacts" onclick="closeMenu()">Контакти</a>
+  <a href="#contacts" onclick="closeMenu()">Зв'язатися →</a>
+</div>
+
+<!-- ── HERO ── -->
+<section id="home">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+
+  <div class="hero-content">
+    <div class="section-label fade-in">ID // 00.1 / TACTICAL DIVISION</div>
+    <h1 class="fade-in">
+      <span class="white">SPRUT</span><br>
+      <span class="green">TACTICAL</span>
+    </h1>
+    <div class="hero-sub fade-in">ELECTRONIC WARFARE</div>
+    <p class="hero-desc fade-in">
+      Виробництво радіоелектронного обладнання, систем РЕБ та антен для
+      Збройних Сил України. Тактичні рішення, що працюють у найскладніших умовах.
+    </p>
+    <div class="hero-buttons fade-in">
+      <a href="#catalog" class="btn-primary">Каталог продукції →</a>
+      <a href="#contacts" class="btn-secondary">Зв'язатися з нами</a>
+    </div>
+
+    <div class="hero-stats fade-in">
+      <div class="stat">
+        <span class="stat-num">10+</span>
+        <span class="stat-label">Років досвіду</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num">50+</span>
+        <span class="stat-label">Реалізованих проєктів</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num">24/7</span>
+        <span class="stat-label">Технічна підтримка</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num">100%</span>
+        <span class="stat-label">Українське виробництво</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-visual fade-in">
+    <div class="hero-radar">
+      <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <style>
+            @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+            @keyframes pulse { 0%,100% { opacity: 0.15; } 50% { opacity: 0.4; } }
+            .radar-sweep { transform-origin: 200px 200px; animation: spin 4s linear infinite; }
+            .radar-pulse { animation: pulse 3s ease-in-out infinite; }
+          </style>
+          <radialGradient id="sweepGrad" cx="0%" cy="50%" r="100%">
+            <stop offset="0%" stop-color="#3d6b47" stop-opacity="0.5"/>
+            <stop offset="100%" stop-color="#3d6b47" stop-opacity="0"/>
+          </radialGradient>
+        </defs>
+        <!-- Circles -->
+        <circle cx="200" cy="200" r="180" fill="none" stroke="#3d6b47" stroke-width="0.5" opacity="0.2"/>
+        <circle cx="200" cy="200" r="140" fill="none" stroke="#3d6b47" stroke-width="0.5" opacity="0.2"/>
+        <circle cx="200" cy="200" r="100" fill="none" stroke="#3d6b47" stroke-width="0.5" opacity="0.2"/>
+        <circle cx="200" cy="200" r="60" fill="none" stroke="#3d6b47" stroke-width="0.5" opacity="0.2"/>
+        <!-- Cross -->
+        <line x1="20" y1="200" x2="380" y2="200" stroke="#3d6b47" stroke-width="0.5" opacity="0.2"/>
+        <line x1="200" y1="20" x2="200" y2="380" stroke="#3d6b47" stroke-width="0.5" opacity="0.2"/>
+        <line x1="72" y1="72" x2="328" y2="328" stroke="#3d6b47" stroke-width="0.5" opacity="0.1"/>
+        <line x1="328" y1="72" x2="72" y2="328" stroke="#3d6b47" stroke-width="0.5" opacity="0.1"/>
+        <!-- Outer ring -->
+        <circle cx="200" cy="200" r="180" fill="none" stroke="#3d6b47" stroke-width="1" opacity="0.4"/>
+        <!-- Sweep -->
+        <g class="radar-sweep">
+          <path d="M200,200 L380,200 A180,180 0 0,1 290,356 Z" fill="url(#sweepGrad)"/>
+          <line x1="200" y1="200" x2="380" y2="200" stroke="#3d6b47" stroke-width="1.5" opacity="0.8"/>
+        </g>
+        <!-- Dots -->
+        <circle cx="280" cy="140" r="4" fill="#3d6b47" class="radar-pulse"/>
+        <circle cx="150" cy="260" r="3" fill="#3d6b47" opacity="0.3"/>
+        <circle cx="310" cy="250" r="2.5" fill="#3d6b47" opacity="0.2"/>
+        <!-- Center -->
+        <circle cx="200" cy="200" r="6" fill="#3d6b47" opacity="0.8"/>
+        <circle cx="200" cy="200" r="3" fill="#3d6b47"/>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- ── FEATURES ── -->
+<section id="features">
+  <div class="features-grid">
+    <div class="features-left fade-in">
+      <div class="section-label">МОЖЛИВОСТІ // 02</div>
+      <h2>ТАКТИЧНІ РІШЕННЯ ДЛЯ КРИТИЧНИХ ЗАДАЧ</h2>
+      <p style="margin-top:1.5rem">
+        Власне конструкторське бюро та виробництво.
+        Ми створюємо системи, які витримують реальні бойові умови
+        та забезпечують перевагу на полі бою.
+      </p>
+    </div>
+    <div class="features-right fade-in">
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>
+        </div>
+        <h3>Радіо Електронна Боротьба</h3>
+        <p>Мобільні та стаціонарні комплекси для нейтралізації БПЛА та засобів зв'язку противника.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24"><path d="M5 12.5 C5 8.36 8.36 5 12.5 5 S20 8.36 20 12.5"/><path d="M8 12.5 C8 10.01 10.01 8 12.5 8 S17 10.01 17 12.5"/><circle cx="12.5" cy="12.5" r="1.5"/><line x1="12.5" y1="14" x2="12.5" y2="20"/></svg>
+        </div>
+        <h3>Антенні системи</h3>
+        <p>Тактичні, направлені та широкосмугові антени власної розробки та виробництва.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/><line x1="12" y1="12" x2="12" y2="16"/><line x1="10" y1="14" x2="14" y2="14"/></svg>
+        </div>
+        <h3>Радіоелектронне обладнання</h3>
+        <p>Захищені радіостанції, блоки керування та модульні рішення для тактичних потреб.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <h3>Військова надійність</h3>
+        <p>Випробувано в реальних бойових умовах. Сертифіковано для застосування ЗСУ.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── TRUST ── -->
+<section id="trust">
+  <div class="trust-grid">
+    <div class="trust-image fade-in">
+      <div class="trust-image-placeholder">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+        <span>Додайте своє фото</span>
+      </div>
+    </div>
+    <div class="trust-right fade-in">
+      <div class="section-label">ДОВІРА // 03</div>
+      <h2>ПРАЦЮЄМО ДЛЯ ТИХ, ХТО ЗАХИЩАЄ УКРАЇНУ</h2>
+      <p style="margin-top:1rem">
+        Наша продукція пройшла випробування у реальних бойових умовах.
+        Ми співпрацюємо з підрозділами ЗСУ, ССО та добровольчими
+        формуваннями, забезпечуючи їх сучасними засобами РЕБ та зв'язку.
+      </p>
+      <ul class="trust-list">
+        <li>Власне виробництво на території України</li>
+        <li>Постійні польові тестування</li>
+        <li>Гарантія та сервісне обслуговування</li>
+        <li>Адаптація під ТТЗ замовника</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ── CATALOG ── -->
+<section id="catalog">
+  <div class="catalog-header fade-in">
+    <div>
+      <div class="section-label">КАТАЛОГ // 04</div>
+      <h2>КЛЮЧОВА ПРОДУКЦІЯ</h2>
+    </div>
+
+  </div>
+
+  <div class="catalog-grid fade-in">
+    <div class="product-card" onclick="openModal('r21')">
+      <div class="product-img">
+        <svg viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M12 18h.01"/></svg>
+        <span class="product-tag">Радіообладнання</span>
+      </div>
+      <div class="product-info">
+        <h3>РАДІОСТАНЦІЯ SPRUT R-21</h3>
+        <p>Тактична захищена радіостанція з шифруванням AES-256.</p>
+      </div>
+    </div>
+    <div class="product-card" onclick="openModal('kalmar')">
+      <div class="product-img">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>
+        <span class="product-tag">Системи РЕБ</span>
+      </div>
+      <div class="product-info">
+        <h3>КОМПЛЕКС РЕБ «КАЛЬМАР-1»</h3>
+        <p>Мобільний комплекс радіоелектронної боротьби з безпілотниками.</p>
+      </div>
+    </div>
+    <div class="product-card" onclick="openModal('a7')">
+      <div class="product-img">
+        <svg viewBox="0 0 24 24"><path d="M5 12.5 C5 8.36 8.36 5 12.5 5 S20 8.36 20 12.5"/><path d="M8 12.5 C8 10.01 10.01 8 12.5 8 S17 10.01 17 12.5"/><circle cx="12.5" cy="12.5" r="1.5"/><line x1="12.5" y1="14" x2="12.5" y2="20"/></svg>
+        <span class="product-tag">Антени</span>
+      </div>
+      <div class="product-info">
+        <h3>АНТЕНА SPRUT A-7</h3>
+        <p>Тактична широкосмугова антена для безпечного зв'язку.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CONTACT CTA ── -->
+<section id="contact">
+  <div class="section-label fade-in">КОНТАКТ // 05</div>
+  <h2 class="fade-in">ПОТРІБНЕ ІНДИВІДУАЛЬНЕ РІШЕННЯ?</h2>
+  <p class="fade-in">
+    Звертайтеся для консультації або замовлення. Ми оперативно відповімо
+    та запропонуємо оптимальну конфігурацію під ваші задачі.
+  </p>
+  <div class="contact-buttons fade-in">
+    <a href="#contacts" class="btn-white">Зв'язатися з нами →</a>
+  </div>
+</section>
+
+<!-- ── CONTACTS ── -->
+<section id="contacts">
+  <div class="contacts-grid">
+    <div class="contact-info fade-in">
+      <div class="section-label">КОНТАКТИ</div>
+      <h2>ЗВ'ЯЖІТЬСЯ З НАМИ</h2>
+      <p style="margin-top:1rem">
+        Для замовлення або консультації напишіть нам у месенджер
+        або зателефонуйте. Ми оперативно відповідаємо та допоможемо
+        підібрати потрібне рішення.
+      </p>
+
+      <div class="contact-items">
+        <div class="contact-item">
+          <div class="contact-item-icon">
+            <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.41 2 2 0 0 1 3.58 1h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 8.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          </div>
+          <div class="contact-item-text">
+            <strong>Телефон</strong>
+            <!-- ЗАМІНІТЬ НА СВІЙ НОМЕР -->
+            <a href="tel:+380000000000">+38 (000) 000-00-00</a>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-item-icon">
+            <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          </div>
+          <div class="contact-item-text">
+            <strong>Email</strong>
+            <!-- ЗАМІНІТЬ НА СВІЙ EMAIL -->
+            <a href="mailto:info@spurt-tactical.ua">info@sprut-tactical.ua</a>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-item-icon">
+            <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          </div>
+          <div class="contact-item-text">
+            <strong>Адреса</strong>
+            <!-- ЗАМІНІТЬ НА СВОЮ АДРЕСУ -->
+            <span>Україна (точна адреса за запитом)</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="contact-messengers">
+        <strong>Месенджери</strong>
+        <div class="messenger-links">
+          <!-- ЗАМІНІТЬ ПОСИЛАННЯ НА СВОЇ -->
+          <a href="https://t.me/your_telegram" class="messenger-btn" target="_blank">
+            <svg viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221l-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12l-6.869 4.326-2.96-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.537-.194 1.006.131.829.941z"/></svg>
+            Telegram
+          </a>
+          <a href="https://wa.me/380000000000" class="messenger-btn" target="_blank">
+            <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
+            WhatsApp
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="contact-note fade-in">
+      <h3>Як зробити замовлення</h3>
+      <ol>
+        <li>Оберіть потрібну продукцію в каталозі</li>
+        <li>Зв'яжіться з нами через месенджер або телефон</li>
+        <li>Отримайте консультацію та уточніть конфігурацію</li>
+        <li>Узгодьте умови та терміни постачання</li>
+        <li>Отримайте обладнання та технічну підтримку</li>
+      </ol>
+      <br>
+      <p style="color:var(--text3);font-size:0.88rem;line-height:1.7">
+        Ми не здійснюємо прямі продажі через сайт. Вся комунікація та узгодження
+        відбуваються в особистому чаті після вашого звернення.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="footer-logo">
+    <div class="footer-logo-icon">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+      </svg>
+    </div>
+    <strong>SPRUT TACTICAL</strong>
+  </div>
+  <p>© 2025 SPRUT TACTICAL. Усі права захищені.</p>
+  <p>Українське виробництво</p>
+</footer>
+
+<!-- ── MODAL ── -->
+<div class="modal-overlay" id="modalOverlay" onclick="closeModal(event)">
+  <div class="modal" id="modal">
+    <div class="modal-header">
+      <div>
+        <span class="modal-tag" id="modalTag"></span>
+        <h3 id="modalTitle"></h3>
+      </div>
+      <button class="modal-close" onclick="closeModalDirect()">✕</button>
+    </div>
+    <div class="modal-body">
+      <p class="modal-desc" id="modalDesc"></p>
+      <div class="modal-specs" id="modalSpecs"></div>
+    </div>
+    <div class="modal-footer">
+      <a href="#contacts" class="btn-secondary" onclick="closeModalDirect()">Зв'язатися →</a>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Product data
+  const products = {
+    'r21': {
+      tag: 'Радіообладнання',
+      title: 'РАДІОСТАНЦІЯ SPRUT R-21',
+      desc: 'Тактична захищена радіостанція з апаратним шифруванням AES-256. Призначена для роботи в умовах активного радіоелектронного придушення. Забезпечує стійкий зв\'язок на відстані до 15 км у відкритій місцевості.',
+      specs: [
+        { label: 'Діапазон частот', value: '30–512 МГц' },
+        { label: 'Потужність', value: '5 / 10 Вт' },
+        { label: 'Шифрування', value: 'AES-256' },
+        { label: 'Захист', value: 'IP67' },
+        { label: 'Акумулятор', value: '12 год роботи' },
+        { label: 'Вага', value: '0.85 кг' },
+      ]
+    },
+    'kalmar': {
+      tag: 'Системи РЕБ',
+      title: 'КОМПЛЕКС РЕБ «КАЛЬМАР-1»',
+      desc: 'Мобільний комплекс радіоелектронної боротьби для нейтралізації безпілотників. Пригнічує канали керування та навігації БПЛА в радіусі до 2 км. Розгортається одним оператором за 3 хвилини.',
+      specs: [
+        { label: 'Радіус дії', value: 'до 2 км' },
+        { label: 'Діапазони', value: '433/868/915 МГц, 2.4/5.8 ГГц, GPS' },
+        { label: 'Живлення', value: '12V / акумулятор' },
+        { label: 'Час розгортання', value: '3 хвилини' },
+        { label: 'Температура', value: '-30°C до +55°C' },
+        { label: 'Вага', value: '4.2 кг' },
+      ]
+    },
+    'a7': {
+      tag: 'Антени',
+      title: 'АНТЕНА SPRUT A-7',
+      desc: 'Тактична широкосмугова антена для безпечного зв\'язку в складних радіоелектронних умовах. Власна розробка та виробництво. Сумісна з більшістю тактичних радіостанцій стандарту НАТО.',
+      specs: [
+        { label: 'Діапазон', value: '30–2500 МГц' },
+        { label: 'Підсилення', value: '3–7 dBi' },
+        { label: 'Імпеданс', value: '50 Ом' },
+        { label: 'Роз\'єм', value: 'SMA / BNC' },
+        { label: 'Довжина', value: '28 см' },
+        { label: 'Вага', value: '120 г' },
+      ]
+    }
+  };
+
+  function openModal(id) {
+    const p = products[id];
+    if (!p) return;
+    document.getElementById('modalTag').textContent = p.tag;
+    document.getElementById('modalTitle').textContent = p.title;
+    document.getElementById('modalDesc').textContent = p.desc;
+    const specsEl = document.getElementById('modalSpecs');
+    specsEl.innerHTML = p.specs.map(s =>
+      `<div class="modal-spec"><strong>${s.label}</strong><span>${s.value}</span></div>`
+    ).join('');
+    document.getElementById('modalOverlay').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal(e) {
+    if (e.target === document.getElementById('modalOverlay')) closeModalDirect();
+  }
+
+  function closeModalDirect() {
+    document.getElementById('modalOverlay').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModalDirect(); });
+
+  // Mobile menu
+  function toggleMenu() {
+    document.getElementById('mobileMenu').classList.toggle('open');
+  }
+  function closeMenu() {
+    document.getElementById('mobileMenu').classList.remove('open');
+  }
+
+  // Close on outside click
+  document.addEventListener('click', function(e) {
+    const menu = document.getElementById('mobileMenu');
+    const ham = document.querySelector('.hamburger');
+    if (!menu.contains(e.target) && !ham.contains(e.target)) {
+      menu.classList.remove('open');
+    }
+  });
+
+  // Scroll animations
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
