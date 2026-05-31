@@ -162,7 +162,7 @@
     .hero-content {
       position: relative;
       z-index: 2;
-      padding: 80px 0;
+      padding: 30px 0 80px;
     }
 
     .section-label {
@@ -835,6 +835,129 @@
       .hero-stats { grid-template-columns: repeat(2, 1fr); }
       .features-right { grid-template-columns: 1fr; }
     }
+
+    /* ── MODAL ── */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.5);
+      z-index: 200;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    .modal-overlay.open { display: flex; }
+
+    .modal {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      max-width: 560px;
+      width: 100%;
+      overflow: hidden;
+      animation: modalIn .25s ease;
+    }
+
+    @keyframes modalIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .modal-header {
+      padding: 24px 24px 16px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 12px;
+    }
+
+    .modal-tag {
+      font-family: var(--font-heading);
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: white;
+      background: var(--accent);
+      padding: 3px 10px;
+      border-radius: 2px;
+      margin-bottom: 8px;
+      display: inline-block;
+    }
+
+    .modal-header h3 {
+      font-family: var(--font-heading);
+      font-size: 1.4rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      color: var(--text);
+    }
+
+    .modal-close {
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px;
+      color: var(--text3);
+      font-size: 1.4rem;
+      line-height: 1;
+      flex-shrink: 0;
+      transition: color .2s;
+    }
+    .modal-close:hover { color: var(--text); }
+
+    .modal-body {
+      padding: 24px;
+    }
+
+    .modal-specs {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .modal-spec {
+      background: var(--bg2);
+      border-radius: 6px;
+      padding: 12px 14px;
+    }
+
+    .modal-spec strong {
+      display: block;
+      font-family: var(--font-heading);
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--text3);
+      margin-bottom: 3px;
+    }
+
+    .modal-spec span {
+      font-size: 0.9rem;
+      color: var(--text);
+      font-weight: 500;
+    }
+
+    .modal-desc {
+      font-size: 0.92rem;
+      color: var(--text2);
+      line-height: 1.7;
+      margin-bottom: 20px;
+    }
+
+    .modal-footer {
+      padding: 16px 24px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      gap: 10px;
+      justify-content: flex-end;
+    }
+
+    .product-card { cursor: pointer; }
   </style>
 </head>
 <body>
@@ -881,7 +1004,7 @@
     </h1>
     <div class="hero-sub fade-in">ELECTRONIC WARFARE</div>
     <p class="hero-desc fade-in">
-      Виробництво радіоелектронного обладнання, систем РЕП та антен для
+      Виробництво радіоелектронного обладнання, систем РЕБ та антен для
       Збройних Сил України. Тактичні рішення, що працюють у найскладніших умовах.
     </p>
     <div class="hero-buttons fade-in">
@@ -1013,7 +1136,7 @@
       <p style="margin-top:1rem">
         Наша продукція пройшла випробування у реальних бойових умовах.
         Ми співпрацюємо з підрозділами ЗСУ, ССО та добровольчими
-        формуваннями, забезпечуючи їх сучасними засобами РЕП та зв'язку.
+        формуваннями, забезпечуючи їх сучасними засобами РЕБ та зв'язку.
       </p>
       <ul class="trust-list">
         <li>Власне виробництво на території України</li>
@@ -1032,11 +1155,11 @@
       <div class="section-label">КАТАЛОГ // 04</div>
       <h2>КЛЮЧОВА ПРОДУКЦІЯ</h2>
     </div>
-    <a href="#contacts" class="btn-secondary">Весь каталог →</a>
+
   </div>
 
   <div class="catalog-grid fade-in">
-    <div class="product-card">
+    <div class="product-card" onclick="openModal('r21')">
       <div class="product-img">
         <svg viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M12 18h.01"/></svg>
         <span class="product-tag">Радіообладнання</span>
@@ -1046,17 +1169,17 @@
         <p>Тактична захищена радіостанція з шифруванням AES-256.</p>
       </div>
     </div>
-    <div class="product-card">
+    <div class="product-card" onclick="openModal('kalmar')">
       <div class="product-img">
         <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>
-        <span class="product-tag">Системи РЕП</span>
+        <span class="product-tag">Системи РЕБ</span>
       </div>
       <div class="product-info">
-        <h3>КОМПЛЕКС РЕП «КАЛЬМАР-1»</h3>
-        <p>Мобільний комплекс радіоелектронної протидії безпілотникам.</p>
+        <h3>КОМПЛЕКС РЕБ «КАЛЬМАР-1»</h3>
+        <p>Мобільний комплекс радіоелектронної боротьби з безпілотниками.</p>
       </div>
     </div>
-    <div class="product-card">
+    <div class="product-card" onclick="openModal('a7')">
       <div class="product-img">
         <svg viewBox="0 0 24 24"><path d="M5 12.5 C5 8.36 8.36 5 12.5 5 S20 8.36 20 12.5"/><path d="M8 12.5 C8 10.01 10.01 8 12.5 8 S17 10.01 17 12.5"/><circle cx="12.5" cy="12.5" r="1.5"/><line x1="12.5" y1="14" x2="12.5" y2="20"/></svg>
         <span class="product-tag">Антени</span>
@@ -1175,7 +1298,95 @@
   <p>Українське виробництво</p>
 </footer>
 
+<!-- ── MODAL ── -->
+<div class="modal-overlay" id="modalOverlay" onclick="closeModal(event)">
+  <div class="modal" id="modal">
+    <div class="modal-header">
+      <div>
+        <span class="modal-tag" id="modalTag"></span>
+        <h3 id="modalTitle"></h3>
+      </div>
+      <button class="modal-close" onclick="closeModalDirect()">✕</button>
+    </div>
+    <div class="modal-body">
+      <p class="modal-desc" id="modalDesc"></p>
+      <div class="modal-specs" id="modalSpecs"></div>
+    </div>
+    <div class="modal-footer">
+      <a href="#contacts" class="btn-secondary" onclick="closeModalDirect()">Зв'язатися →</a>
+    </div>
+  </div>
+</div>
+
 <script>
+  // Product data
+  const products = {
+    'r21': {
+      tag: 'Радіообладнання',
+      title: 'РАДІОСТАНЦІЯ SPRUT R-21',
+      desc: 'Тактична захищена радіостанція з апаратним шифруванням AES-256. Призначена для роботи в умовах активного радіоелектронного придушення. Забезпечує стійкий зв\'язок на відстані до 15 км у відкритій місцевості.',
+      specs: [
+        { label: 'Діапазон частот', value: '30–512 МГц' },
+        { label: 'Потужність', value: '5 / 10 Вт' },
+        { label: 'Шифрування', value: 'AES-256' },
+        { label: 'Захист', value: 'IP67' },
+        { label: 'Акумулятор', value: '12 год роботи' },
+        { label: 'Вага', value: '0.85 кг' },
+      ]
+    },
+    'kalmar': {
+      tag: 'Системи РЕБ',
+      title: 'КОМПЛЕКС РЕБ «КАЛЬМАР-1»',
+      desc: 'Мобільний комплекс радіоелектронної боротьби для нейтралізації безпілотників. Пригнічує канали керування та навігації БПЛА в радіусі до 2 км. Розгортається одним оператором за 3 хвилини.',
+      specs: [
+        { label: 'Радіус дії', value: 'до 2 км' },
+        { label: 'Діапазони', value: '433/868/915 МГц, 2.4/5.8 ГГц, GPS' },
+        { label: 'Живлення', value: '12V / акумулятор' },
+        { label: 'Час розгортання', value: '3 хвилини' },
+        { label: 'Температура', value: '-30°C до +55°C' },
+        { label: 'Вага', value: '4.2 кг' },
+      ]
+    },
+    'a7': {
+      tag: 'Антени',
+      title: 'АНТЕНА SPRUT A-7',
+      desc: 'Тактична широкосмугова антена для безпечного зв\'язку в складних радіоелектронних умовах. Власна розробка та виробництво. Сумісна з більшістю тактичних радіостанцій стандарту НАТО.',
+      specs: [
+        { label: 'Діапазон', value: '30–2500 МГц' },
+        { label: 'Підсилення', value: '3–7 dBi' },
+        { label: 'Імпеданс', value: '50 Ом' },
+        { label: 'Роз\'єм', value: 'SMA / BNC' },
+        { label: 'Довжина', value: '28 см' },
+        { label: 'Вага', value: '120 г' },
+      ]
+    }
+  };
+
+  function openModal(id) {
+    const p = products[id];
+    if (!p) return;
+    document.getElementById('modalTag').textContent = p.tag;
+    document.getElementById('modalTitle').textContent = p.title;
+    document.getElementById('modalDesc').textContent = p.desc;
+    const specsEl = document.getElementById('modalSpecs');
+    specsEl.innerHTML = p.specs.map(s =>
+      `<div class="modal-spec"><strong>${s.label}</strong><span>${s.value}</span></div>`
+    ).join('');
+    document.getElementById('modalOverlay').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal(e) {
+    if (e.target === document.getElementById('modalOverlay')) closeModalDirect();
+  }
+
+  function closeModalDirect() {
+    document.getElementById('modalOverlay').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModalDirect(); });
+
   // Mobile menu
   function toggleMenu() {
     document.getElementById('mobileMenu').classList.toggle('open');
