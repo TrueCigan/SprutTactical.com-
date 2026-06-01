@@ -836,6 +836,44 @@
       .features-right { grid-template-columns: 1fr; }
     }
 
+    /* ── CATEGORY TABS ── */
+    .cat-tabs {
+      display: flex;
+      gap: 4px;
+      margin-bottom: 2rem;
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 4px;
+      width: fit-content;
+    }
+
+    .cat-tab {
+      font-family: var(--font-heading);
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 10px 24px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      background: transparent;
+      color: var(--text2);
+      transition: all .2s;
+    }
+
+    .cat-tab:hover { color: var(--accent); }
+
+    .cat-tab.active {
+      background: var(--surface);
+      color: var(--accent);
+      box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+    }
+
+    .cat-panel { display: block; }
+    .cat-panel.hidden { display: none; }
+
     /* ── MODAL ── */
     .modal-overlay {
       display: none;
@@ -1155,39 +1193,60 @@
       <div class="section-label">КАТАЛОГ // 04</div>
       <h2>КЛЮЧОВА ПРОДУКЦІЯ</h2>
     </div>
-
   </div>
 
-  <div class="catalog-grid fade-in">
-    <div class="product-card" onclick="openModal('r21')">
-      <div class="product-img">
-        <svg viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M12 18h.01"/></svg>
-        <span class="product-tag">Радіообладнання</span>
-      </div>
-      <div class="product-info">
-        <h3>РАДІОСТАНЦІЯ SPRUT R-21</h3>
-        <p>Тактична захищена радіостанція з шифруванням AES-256.</p>
-      </div>
+  <!-- Category tabs -->
+  <div class="cat-tabs fade-in">
+    <button class="cat-tab active" onclick="showCategory('reb')">Системи РЕБ</button>
+    <button class="cat-tab" onclick="showCategory('ant')">Антени</button>
+    <button class="cat-tab" onclick="showCategory('other')">— — —</button>
+  </div>
+
+  <!-- РЕБ -->
+  <div class="cat-panel" id="cat-reb">
+    <div class="catalog-grid">
+      <div class="product-card" onclick="openModal('reb1')"><div class="product-img"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg><span class="product-tag">Системи РЕБ</span></div><div class="product-info"><h3>КАЛЬМАР-1</h3><p>Мобільний комплекс РЕБ для нейтралізації БПЛА.</p></div></div>
+      <div class="product-card" onclick="openModal('reb2')"><div class="product-img"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg><span class="product-tag">Системи РЕБ</span></div><div class="product-info"><h3>КАЛЬМАР-2</h3><p>Стаціонарний комплекс РЕБ підвищеної потужності.</p></div></div>
+      <div class="product-card" onclick="openModal('reb3')"><div class="product-img"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg><span class="product-tag">Системи РЕБ</span></div><div class="product-info"><h3>МУРЕНА-1</h3><p>Носимий глушник каналів керування БПЛА.</p></div></div>
+      <div class="product-card" onclick="openModal('reb4')"><div class="product-img"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg><span class="product-tag">Системи РЕБ</span></div><div class="product-info"><h3>МУРЕНА-3</h3><p>Компактний РЕБ-модуль для монтажу на техніку.</p></div></div>
+      <div class="product-card" onclick="openModal('reb5')"><div class="product-img"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg><span class="product-tag">Системи РЕБ</span></div><div class="product-info"><h3>БАРРАКУДА-5</h3><p>Широкосмуговий глушник для захисту периметру.</p></div></div>
+      <div class="product-card" onclick="openModal('reb6')"><div class="product-img"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg><span class="product-tag">Системи РЕБ</span></div><div class="product-info"><h3>БАРРАКУДА-7</h3><p>Стаціонарна система захисту від FPV-дронів.</p></div></div>
+      <div class="product-card" onclick="openModal('reb7')"><div class="product-img"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg><span class="product-tag">Системи РЕБ</span></div><div class="product-info"><h3>СКАТ-1</h3><p>Автономний РЕБ-комплекс з дистанційним керуванням.</p></div></div>
+      <div class="product-card" onclick="openModal('reb8')"><div class="product-img"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg><span class="product-tag">Системи РЕБ</span></div><div class="product-info"><h3>СКАТ-3</h3><p>Возимий комплекс РЕБ для бронетехніки.</p></div></div>
+      <div class="product-card" onclick="openModal('reb9')"><div class="product-img"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg><span class="product-tag">Системи РЕБ</span></div><div class="product-info"><h3>ОМАР-X</h3><p>Модульна система РЕБ з розширеним діапазоном.</p></div></div>
+      <div class="product-card" onclick="openModal('reb10')"><div class="product-img"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg><span class="product-tag">Системи РЕБ</span></div><div class="product-info"><h3>ОМАР-XL</h3><p>Стаціонарний комплекс для захисту великих об'єктів.</p></div></div>
     </div>
-    <div class="product-card" onclick="openModal('kalmar')">
-      <div class="product-img">
-        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>
-        <span class="product-tag">Системи РЕБ</span>
-      </div>
-      <div class="product-info">
-        <h3>КОМПЛЕКС РЕБ «КАЛЬМАР-1»</h3>
-        <p>Мобільний комплекс радіоелектронної боротьби з безпілотниками.</p>
-      </div>
+  </div>
+
+  <!-- Антени -->
+  <div class="cat-panel hidden" id="cat-ant">
+    <div class="catalog-grid">
+      <div class="product-card" onclick="openModal('ant1')"><div class="product-img"><svg viewBox="0 0 24 24"><path d="M5 12.5C5 8.36 8.36 5 12.5 5S20 8.36 20 12.5"/><path d="M8 12.5C8 10.01 10.01 8 12.5 8S17 10.01 17 12.5"/><circle cx="12.5" cy="12.5" r="1.5"/><line x1="12.5" y1="14" x2="12.5" y2="20"/></svg><span class="product-tag">Антени</span></div><div class="product-info"><h3>SPRUT A-7</h3><p>Тактична широкосмугова антена для безпечного зв'язку.</p></div></div>
+      <div class="product-card" onclick="openModal('ant2')"><div class="product-img"><svg viewBox="0 0 24 24"><path d="M5 12.5C5 8.36 8.36 5 12.5 5S20 8.36 20 12.5"/><path d="M8 12.5C8 10.01 10.01 8 12.5 8S17 10.01 17 12.5"/><circle cx="12.5" cy="12.5" r="1.5"/><line x1="12.5" y1="14" x2="12.5" y2="20"/></svg><span class="product-tag">Антени</span></div><div class="product-info"><h3>SPRUT A-12</h3><p>Направлена антена для роботи на великих відстанях.</p></div></div>
+      <div class="product-card" onclick="openModal('ant3')"><div class="product-img"><svg viewBox="0 0 24 24"><path d="M5 12.5C5 8.36 8.36 5 12.5 5S20 8.36 20 12.5"/><path d="M8 12.5C8 10.01 10.01 8 12.5 8S17 10.01 17 12.5"/><circle cx="12.5" cy="12.5" r="1.5"/><line x1="12.5" y1="14" x2="12.5" y2="20"/></svg><span class="product-tag">Антени</span></div><div class="product-info"><h3>SPRUT A-15</h3><p>Всеспрямована антена для базових станцій.</p></div></div>
+      <div class="product-card" onclick="openModal('ant4')"><div class="product-img"><svg viewBox="0 0 24 24"><path d="M5 12.5C5 8.36 8.36 5 12.5 5S20 8.36 20 12.5"/><path d="M8 12.5C8 10.01 10.01 8 12.5 8S17 10.01 17 12.5"/><circle cx="12.5" cy="12.5" r="1.5"/><line x1="12.5" y1="14" x2="12.5" y2="20"/></svg><span class="product-tag">Антени</span></div><div class="product-info"><h3>SPRUT A-20</h3><p>Антена для роботи в діапазоні GPS/ГЛОНАСС.</p></div></div>
+      <div class="product-card" onclick="openModal('ant5')"><div class="product-img"><svg viewBox="0 0 24 24"><path d="M5 12.5C5 8.36 8.36 5 12.5 5S20 8.36 20 12.5"/><path d="M8 12.5C8 10.01 10.01 8 12.5 8S17 10.01 17 12.5"/><circle cx="12.5" cy="12.5" r="1.5"/><line x1="12.5" y1="14" x2="12.5" y2="20"/></svg><span class="product-tag">Антени</span></div><div class="product-info"><h3>SPRUT PA-3</h3><p>Панельна антена для стаціонарних позицій.</p></div></div>
+      <div class="product-card" onclick="openModal('ant6')"><div class="product-img"><svg viewBox="0 0 24 24"><path d="M5 12.5C5 8.36 8.36 5 12.5 5S20 8.36 20 12.5"/><path d="M8 12.5C8 10.01 10.01 8 12.5 8S17 10.01 17 12.5"/><circle cx="12.5" cy="12.5" r="1.5"/><line x1="12.5" y1="14" x2="12.5" y2="20"/></svg><span class="product-tag">Антени</span></div><div class="product-info"><h3>SPRUT PA-5</h3><p>Широкосмугова панельна антена з підвищеним підсиленням.</p></div></div>
+      <div class="product-card" onclick="openModal('ant7')"><div class="product-img"><svg viewBox="0 0 24 24"><path d="M5 12.5C5 8.36 8.36 5 12.5 5S20 8.36 20 12.5"/><path d="M8 12.5C8 10.01 10.01 8 12.5 8S17 10.01 17 12.5"/><circle cx="12.5" cy="12.5" r="1.5"/><line x1="12.5" y1="14" x2="12.5" y2="20"/></svg><span class="product-tag">Антени</span></div><div class="product-info"><h3>SPRUT YA-9</h3><p>Антена Яги для направленого зв'язку на великі відстані.</p></div></div>
+      <div class="product-card" onclick="openModal('ant8')"><div class="product-img"><svg viewBox="0 0 24 24"><path d="M5 12.5C5 8.36 8.36 5 12.5 5S20 8.36 20 12.5"/><path d="M8 12.5C8 10.01 10.01 8 12.5 8S17 10.01 17 12.5"/><circle cx="12.5" cy="12.5" r="1.5"/><line x1="12.5" y1="14" x2="12.5" y2="20"/></svg><span class="product-tag">Антени</span></div><div class="product-info"><h3>SPRUT MA-2</h3><p>Магнітна антена для монтажу на бронетехніку.</p></div></div>
+      <div class="product-card" onclick="openModal('ant9')"><div class="product-img"><svg viewBox="0 0 24 24"><path d="M5 12.5C5 8.36 8.36 5 12.5 5S20 8.36 20 12.5"/><path d="M8 12.5C8 10.01 10.01 8 12.5 8S17 10.01 17 12.5"/><circle cx="12.5" cy="12.5" r="1.5"/><line x1="12.5" y1="14" x2="12.5" y2="20"/></svg><span class="product-tag">Антени</span></div><div class="product-info"><h3>SPRUT HA-1</h3><p>Хелікальна антена для роботи з FPV-системами.</p></div></div>
+      <div class="product-card" onclick="openModal('ant10')"><div class="product-img"><svg viewBox="0 0 24 24"><path d="M5 12.5C5 8.36 8.36 5 12.5 5S20 8.36 20 12.5"/><path d="M8 12.5C8 10.01 10.01 8 12.5 8S17 10.01 17 12.5"/><circle cx="12.5" cy="12.5" r="1.5"/><line x1="12.5" y1="14" x2="12.5" y2="20"/></svg><span class="product-tag">Антени</span></div><div class="product-info"><h3>SPRUT DA-4</h3><p>Дипольна антена для польових умов експлуатації.</p></div></div>
     </div>
-    <div class="product-card" onclick="openModal('a7')">
-      <div class="product-img">
-        <svg viewBox="0 0 24 24"><path d="M5 12.5 C5 8.36 8.36 5 12.5 5 S20 8.36 20 12.5"/><path d="M8 12.5 C8 10.01 10.01 8 12.5 8 S17 10.01 17 12.5"/><circle cx="12.5" cy="12.5" r="1.5"/><line x1="12.5" y1="14" x2="12.5" y2="20"/></svg>
-        <span class="product-tag">Антени</span>
-      </div>
-      <div class="product-info">
-        <h3>АНТЕНА SPRUT A-7</h3>
-        <p>Тактична широкосмугова антена для безпечного зв'язку.</p>
-      </div>
+  </div>
+
+  <!-- Третій розділ -->
+  <div class="cat-panel hidden" id="cat-other">
+    <div class="catalog-grid">
+      <div class="product-card" onclick="openModal('oth1')"><div class="product-img"><svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg><span class="product-tag">Продукція</span></div><div class="product-info"><h3>ПРОДУКТ 01</h3><p>Опис буде додано пізніше.</p></div></div>
+      <div class="product-card" onclick="openModal('oth2')"><div class="product-img"><svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg><span class="product-tag">Продукція</span></div><div class="product-info"><h3>ПРОДУКТ 02</h3><p>Опис буде додано пізніше.</p></div></div>
+      <div class="product-card" onclick="openModal('oth3')"><div class="product-img"><svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg><span class="product-tag">Продукція</span></div><div class="product-info"><h3>ПРОДУКТ 03</h3><p>Опис буде додано пізніше.</p></div></div>
+      <div class="product-card" onclick="openModal('oth4')"><div class="product-img"><svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg><span class="product-tag">Продукція</span></div><div class="product-info"><h3>ПРОДУКТ 04</h3><p>Опис буде додано пізніше.</p></div></div>
+      <div class="product-card" onclick="openModal('oth5')"><div class="product-img"><svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg><span class="product-tag">Продукція</span></div><div class="product-info"><h3>ПРОДУКТ 05</h3><p>Опис буде додано пізніше.</p></div></div>
+      <div class="product-card" onclick="openModal('oth6')"><div class="product-img"><svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg><span class="product-tag">Продукція</span></div><div class="product-info"><h3>ПРОДУКТ 06</h3><p>Опис буде додано пізніше.</p></div></div>
+      <div class="product-card" onclick="openModal('oth7')"><div class="product-img"><svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg><span class="product-tag">Продукція</span></div><div class="product-info"><h3>ПРОДУКТ 07</h3><p>Опис буде додано пізніше.</p></div></div>
+      <div class="product-card" onclick="openModal('oth8')"><div class="product-img"><svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg><span class="product-tag">Продукція</span></div><div class="product-info"><h3>ПРОДУКТ 08</h3><p>Опис буде додано пізніше.</p></div></div>
+      <div class="product-card" onclick="openModal('oth9')"><div class="product-img"><svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg><span class="product-tag">Продукція</span></div><div class="product-info"><h3>ПРОДУКТ 09</h3><p>Опис буде додано пізніше.</p></div></div>
+      <div class="product-card" onclick="openModal('oth10')"><div class="product-img"><svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg><span class="product-tag">Продукція</span></div><div class="product-info"><h3>ПРОДУКТ 10</h3><p>Опис буде додано пізніше.</p></div></div>
     </div>
   </div>
 </section>
@@ -1319,47 +1378,49 @@
 </div>
 
 <script>
+  // Category tabs
+  function showCategory(id) {
+    document.querySelectorAll('.cat-panel').forEach(p => p.classList.add('hidden'));
+    document.querySelectorAll('.cat-tab').forEach(t => t.classList.remove('active'));
+    document.getElementById('cat-' + id).classList.remove('hidden');
+    event.currentTarget.classList.add('active');
+  }
+
   // Product data
   const products = {
-    'r21': {
-      tag: 'Радіообладнання',
-      title: 'РАДІОСТАНЦІЯ SPRUT R-21',
-      desc: 'Тактична захищена радіостанція з апаратним шифруванням AES-256. Призначена для роботи в умовах активного радіоелектронного придушення. Забезпечує стійкий зв\'язок на відстані до 15 км у відкритій місцевості.',
-      specs: [
-        { label: 'Діапазон частот', value: '30–512 МГц' },
-        { label: 'Потужність', value: '5 / 10 Вт' },
-        { label: 'Шифрування', value: 'AES-256' },
-        { label: 'Захист', value: 'IP67' },
-        { label: 'Акумулятор', value: '12 год роботи' },
-        { label: 'Вага', value: '0.85 кг' },
-      ]
-    },
-    'kalmar': {
-      tag: 'Системи РЕБ',
-      title: 'КОМПЛЕКС РЕБ «КАЛЬМАР-1»',
-      desc: 'Мобільний комплекс радіоелектронної боротьби для нейтралізації безпілотників. Пригнічує канали керування та навігації БПЛА в радіусі до 2 км. Розгортається одним оператором за 3 хвилини.',
-      specs: [
-        { label: 'Радіус дії', value: 'до 2 км' },
-        { label: 'Діапазони', value: '433/868/915 МГц, 2.4/5.8 ГГц, GPS' },
-        { label: 'Живлення', value: '12V / акумулятор' },
-        { label: 'Час розгортання', value: '3 хвилини' },
-        { label: 'Температура', value: '-30°C до +55°C' },
-        { label: 'Вага', value: '4.2 кг' },
-      ]
-    },
-    'a7': {
-      tag: 'Антени',
-      title: 'АНТЕНА SPRUT A-7',
-      desc: 'Тактична широкосмугова антена для безпечного зв\'язку в складних радіоелектронних умовах. Власна розробка та виробництво. Сумісна з більшістю тактичних радіостанцій стандарту НАТО.',
-      specs: [
-        { label: 'Діапазон', value: '30–2500 МГц' },
-        { label: 'Підсилення', value: '3–7 dBi' },
-        { label: 'Імпеданс', value: '50 Ом' },
-        { label: 'Роз\'єм', value: 'SMA / BNC' },
-        { label: 'Довжина', value: '28 см' },
-        { label: 'Вага', value: '120 г' },
-      ]
-    }
+    // РЕБ
+    'reb1':  { tag: 'Системи РЕБ', title: 'КАЛЬМАР-1', desc: 'Мобільний комплекс РЕБ для нейтралізації БПЛА. Пригнічує канали керування та навігації в радіусі до 2 км. Розгортається одним оператором за 3 хвилини.', specs: [{ label: 'Радіус дії', value: 'до 2 км' }, { label: 'Діапазони', value: '433/868/915 МГц, 2.4/5.8 ГГц, GPS' }, { label: 'Живлення', value: '12V / акумулятор' }, { label: 'Вага', value: '4.2 кг' }] },
+    'reb2':  { tag: 'Системи РЕБ', title: 'КАЛЬМАР-2', desc: 'Стаціонарний комплекс РЕБ підвищеної потужності для захисту об\'єктів. Охоплює радіус до 5 км.', specs: [{ label: 'Радіус дії', value: 'до 5 км' }, { label: 'Живлення', value: '220V / генератор' }, { label: 'Вага', value: '12 кг' }, { label: 'Захист', value: 'IP65' }] },
+    'reb3':  { tag: 'Системи РЕБ', title: 'МУРЕНА-1', desc: 'Носимий глушник каналів керування БПЛА. Компактний та легкий, призначений для індивідуального використання.', specs: [{ label: 'Радіус дії', value: 'до 500 м' }, { label: 'Вага', value: '1.1 кг' }, { label: 'Живлення', value: 'акумулятор 4 год' }, { label: 'Захист', value: 'IP54' }] },
+    'reb4':  { tag: 'Системи РЕБ', title: 'МУРЕНА-3', desc: 'Компактний РЕБ-модуль для монтажу на техніку. Інтегрується в системи бронетехніки та позашляховиків.', specs: [{ label: 'Монтаж', value: 'на техніку' }, { label: 'Живлення', value: '12/24V бортова мережа' }, { label: 'Радіус дії', value: 'до 1 км' }, { label: 'Вага', value: '2.8 кг' }] },
+    'reb5':  { tag: 'Системи РЕБ', title: 'БАРРАКУДА-5', desc: 'Широкосмуговий глушник для захисту периметру. Перекриває широкий спектр частот одночасно.', specs: [{ label: 'Діапазон', value: '20 МГц – 6 ГГц' }, { label: 'Радіус дії', value: 'до 3 км' }, { label: 'Живлення', value: '220V' }, { label: 'Вага', value: '8 кг' }] },
+    'reb6':  { tag: 'Системи РЕБ', title: 'БАРРАКУДА-7', desc: 'Стаціонарна система захисту від FPV-дронів. Спеціалізована на пригніченні відеоканалів та каналів керування FPV.', specs: [{ label: 'Спеціалізація', value: 'FPV-дрони' }, { label: 'Діапазони', value: '5.8 ГГц / 2.4 ГГц' }, { label: 'Радіус дії', value: 'до 2 км' }, { label: 'Вага', value: '6 кг' }] },
+    'reb7':  { tag: 'Системи РЕБ', title: 'СКАТ-1', desc: 'Автономний РЕБ-комплекс з дистанційним керуванням. Може працювати без оператора в автоматичному режимі.', specs: [{ label: 'Режим роботи', value: 'автономний / ручний' }, { label: 'Керування', value: 'дистанційне до 500 м' }, { label: 'Живлення', value: 'акумулятор 8 год' }, { label: 'Вага', value: '5.5 кг' }] },
+    'reb8':  { tag: 'Системи РЕБ', title: 'СКАТ-3', desc: 'Возимий комплекс РЕБ для бронетехніки. Розроблений для встановлення на БТР, БМП та інші бойові машини.', specs: [{ label: 'Монтаж', value: 'бронетехніка' }, { label: 'Живлення', value: '24V бортова мережа' }, { label: 'Радіус дії', value: 'до 2.5 км' }, { label: 'Захист', value: 'IP67' }] },
+    'reb9':  { tag: 'Системи РЕБ', title: 'ОМАР-X', desc: 'Модульна система РЕБ з розширеним діапазоном. Модульна архітектура дозволяє нарощувати можливості під конкретні задачі.', specs: [{ label: 'Архітектура', value: 'модульна' }, { label: 'Діапазон', value: 'налаштовується' }, { label: 'Живлення', value: '12/220V' }, { label: 'Вага базова', value: '3.5 кг' }] },
+    'reb10': { tag: 'Системи РЕБ', title: 'ОМАР-XL', desc: 'Стаціонарний комплекс для захисту великих об\'єктів та інфраструктури. Забезпечує захист у радіусі до 10 км.', specs: [{ label: 'Радіус дії', value: 'до 10 км' }, { label: 'Живлення', value: '380V / генератор' }, { label: 'Охолодження', value: 'активне' }, { label: 'Вага', value: '45 кг' }] },
+    // Антени
+    'ant1':  { tag: 'Антени', title: 'SPRUT A-7', desc: 'Тактична широкосмугова антена для безпечного зв\'язку в складних умовах. Сумісна з більшістю тактичних радіостанцій стандарту НАТО.', specs: [{ label: 'Діапазон', value: '30–2500 МГц' }, { label: 'Підсилення', value: '3–7 dBi' }, { label: 'Роз\'єм', value: 'SMA / BNC' }, { label: 'Вага', value: '120 г' }] },
+    'ant2':  { tag: 'Антени', title: 'SPRUT A-12', desc: 'Направлена антена для роботи на великих відстанях. Забезпечує стійкий зв\'язок до 30 км у відкритій місцевості.', specs: [{ label: 'Діапазон', value: '400–2500 МГц' }, { label: 'Підсилення', value: '12 dBi' }, { label: 'Кут випромінювання', value: '30°' }, { label: 'Вага', value: '350 г' }] },
+    'ant3':  { tag: 'Антени', title: 'SPRUT A-15', desc: 'Всеспрямована антена для базових станцій. Рівномірне покриття на 360° у горизонтальній площині.', specs: [{ label: 'Тип', value: 'всеспрямована' }, { label: 'Діапазон', value: '100–1000 МГц' }, { label: 'Підсилення', value: '5 dBi' }, { label: 'Вага', value: '280 г' }] },
+    'ant4':  { tag: 'Антени', title: 'SPRUT A-20', desc: 'Антена для роботи в діапазоні GPS/ГЛОНАСС. Висока точність прийому сигналів навігаційних систем.', specs: [{ label: 'Діапазон', value: 'GPS L1/L2, ГЛОНАСС' }, { label: 'Підсилення', value: '28 dB LNA' }, { label: 'Роз\'єм', value: 'SMA' }, { label: 'Вага', value: '85 г' }] },
+    'ant5':  { tag: 'Антени', title: 'SPRUT PA-3', desc: 'Панельна антена для стаціонарних позицій. Оптимальна для організації ліній зв\'язку між опорними пунктами.', specs: [{ label: 'Тип', value: 'панельна' }, { label: 'Діапазон', value: '700–2700 МГц' }, { label: 'Підсилення', value: '14 dBi' }, { label: 'Вага', value: '600 г' }] },
+    'ant6':  { tag: 'Антени', title: 'SPRUT PA-5', desc: 'Широкосмугова панельна антена з підвищеним підсиленням для надійного зв\'язку на середніх відстанях.', specs: [{ label: 'Діапазон', value: '400–6000 МГц' }, { label: 'Підсилення', value: '18 dBi' }, { label: 'Поляризація', value: 'подвійна' }, { label: 'Вага', value: '900 г' }] },
+    'ant7':  { tag: 'Антени', title: 'SPRUT YA-9', desc: 'Антена Яги для направленого зв\'язку на великі відстані. Класична конструкція з сучасними матеріалами.', specs: [{ label: 'Тип', value: 'Яги' }, { label: 'Елементів', value: '9' }, { label: 'Підсилення', value: '11 dBd' }, { label: 'Вага', value: '450 г' }] },
+    'ant8':  { tag: 'Антени', title: 'SPRUT MA-2', desc: 'Магнітна антена для монтажу на бронетехніку. Надійна фіксація на металевих поверхнях, стійка до вібрацій.', specs: [{ label: 'Монтаж', value: 'магнітна основа' }, { label: 'Діапазон', value: '25–512 МГц' }, { label: 'Підсилення', value: '3 dBi' }, { label: 'Вага', value: '200 г' }] },
+    'ant9':  { tag: 'Антени', title: 'SPRUT HA-1', desc: 'Хелікальна антена для роботи з FPV-системами. Кругова поляризація для стабільного відеозв\'язку з БПЛА.', specs: [{ label: 'Тип', value: 'хелікальна' }, { label: 'Діапазон', value: '5.8 ГГц' }, { label: 'Поляризація', value: 'RHCP / LHCP' }, { label: 'Вага', value: '65 г' }] },
+    'ant10': { tag: 'Антени', title: 'SPRUT DA-4', desc: 'Дипольна антена для польових умов. Проста розгортка, висока надійність, сумісна з усіма стандартними радіостанціями.', specs: [{ label: 'Тип', value: 'диполь' }, { label: 'Діапазон', value: '30–300 МГц' }, { label: 'Роз\'єм', value: 'PL-259 / BNC' }, { label: 'Вага', value: '95 г' }] },
+    // Інші
+    'oth1': { tag: 'Продукція', title: 'ПРОДУКТ 01', desc: 'Інформація буде додана пізніше. Зв\'яжіться з нами для уточнення деталей.', specs: [{ label: 'Статус', value: 'Незабаром' }] },
+    'oth2': { tag: 'Продукція', title: 'ПРОДУКТ 02', desc: 'Інформація буде додана пізніше. Зв\'яжіться з нами для уточнення деталей.', specs: [{ label: 'Статус', value: 'Незабаром' }] },
+    'oth3': { tag: 'Продукція', title: 'ПРОДУКТ 03', desc: 'Інформація буде додана пізніше. Зв\'яжіться з нами для уточнення деталей.', specs: [{ label: 'Статус', value: 'Незабаром' }] },
+    'oth4': { tag: 'Продукція', title: 'ПРОДУКТ 04', desc: 'Інформація буде додана пізніше. Зв\'яжіться з нами для уточнення деталей.', specs: [{ label: 'Статус', value: 'Незабаром' }] },
+    'oth5': { tag: 'Продукція', title: 'ПРОДУКТ 05', desc: 'Інформація буде додана пізніше. Зв\'яжіться з нами для уточнення деталей.', specs: [{ label: 'Статус', value: 'Незабаром' }] },
+    'oth6': { tag: 'Продукція', title: 'ПРОДУКТ 06', desc: 'Інформація буде додана пізніше. Зв\'яжіться з нами для уточнення деталей.', specs: [{ label: 'Статус', value: 'Незабаром' }] },
+    'oth7': { tag: 'Продукція', title: 'ПРОДУКТ 07', desc: 'Інформація буде додана пізніше. Зв\'яжіться з нами для уточнення деталей.', specs: [{ label: 'Статус', value: 'Незабаром' }] },
+    'oth8': { tag: 'Продукція', title: 'ПРОДУКТ 08', desc: 'Інформація буде додана пізніше. Зв\'яжіться з нами для уточнення деталей.', specs: [{ label: 'Статус', value: 'Незабаром' }] },
+    'oth9': { tag: 'Продукція', title: 'ПРОДУКТ 09', desc: 'Інформація буде додана пізніше. Зв\'яжіться з нами для уточнення деталей.', specs: [{ label: 'Статус', value: 'Незабаром' }] },
+    'oth10':{ tag: 'Продукція', title: 'ПРОДУКТ 10', desc: 'Інформація буде додана пізніше. Зв\'яжіться з нами для уточнення деталей.', specs: [{ label: 'Статус', value: 'Незабаром' }] },
   };
 
   function openModal(id) {
