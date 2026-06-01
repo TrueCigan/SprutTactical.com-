@@ -825,7 +825,7 @@
       .hero-stats { grid-template-columns: repeat(2, 1fr); }
       .features-grid { grid-template-columns: 1fr; }
       .trust-grid { grid-template-columns: 1fr; }
-      .catalog-grid { grid-template-columns: 1fr; }
+      .catalog-grid { grid-template-columns: repeat(2, 1fr); }
       .contacts-grid { grid-template-columns: 1fr; }
       .nav-links { display: none; }
       .hamburger { display: flex; }
@@ -834,6 +834,10 @@
     @media (max-width: 600px) {
       .hero-stats { grid-template-columns: repeat(2, 1fr); }
       .features-right { grid-template-columns: 1fr; }
+      .catalog-grid { grid-template-columns: repeat(2, 1fr); }
+      .product-info h3 { font-size: 0.85rem; }
+      .product-info p { font-size: 0.78rem; }
+      .cat-tab { padding: 8px 12px; font-size: 0.72rem; letter-spacing: 1px; }
     }
 
     /* ── CATEGORY TABS ── */
