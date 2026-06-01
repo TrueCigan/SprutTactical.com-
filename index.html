@@ -834,10 +834,23 @@
     @media (max-width: 600px) {
       .hero-stats { grid-template-columns: repeat(2, 1fr); }
       .features-right { grid-template-columns: 1fr; }
-      .catalog-grid { grid-template-columns: repeat(2, 1fr); }
-      .product-info h3 { font-size: 0.85rem; }
-      .product-info p { font-size: 0.78rem; }
-      .cat-tab { padding: 8px 12px; font-size: 0.72rem; letter-spacing: 1px; }
+      .catalog-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 8px !important;
+        background: transparent !important;
+        border: none !important;
+        padding: 0 !important;
+      }
+      .product-card {
+        border: 1px solid var(--border);
+        border-radius: 6px;
+      }
+      .product-info { padding: 12px; }
+      .product-info h3 { font-size: 0.82rem; }
+      .product-info p { font-size: 0.75rem; }
+      .product-tag { font-size: 0.55rem; padding: 3px 8px; }
+      .cat-tabs { width: 100%; }
+      .cat-tab { flex: 1; padding: 8px 6px; font-size: 0.68rem; letter-spacing: 0.5px; text-align: center; }
     }
 
     /* ── CATEGORY TABS ── */
