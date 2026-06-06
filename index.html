@@ -1034,6 +1034,69 @@
     }
 
     .product-card { cursor: pointer; }
+
+    @media (max-width: 600px) {
+      .modal-overlay {
+        padding: 0;
+        align-items: flex-end;
+      }
+
+      .modal {
+        border-radius: 16px 16px 0 0;
+        max-height: 80vh;
+        overflow-y: auto;
+        width: 100%;
+        max-width: 100%;
+      }
+
+      .modal-header {
+        padding: 16px 16px 12px;
+        position: sticky;
+        top: 0;
+        background: var(--surface);
+        z-index: 1;
+      }
+
+      .modal-header h3 {
+        font-size: 1.1rem;
+      }
+
+      .modal-close {
+        font-size: 1.1rem;
+        width: 32px;
+        height: 32px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: var(--bg2);
+        border-radius: 50%;
+        color: var(--text);
+      }
+
+      .modal-body {
+        padding: 16px;
+      }
+
+      .modal-specs {
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+      }
+
+      .modal-spec {
+        padding: 10px 12px;
+      }
+
+      .modal-spec span {
+        font-size: 0.82rem;
+      }
+
+      .modal-footer {
+        padding: 12px 16px;
+        position: sticky;
+        bottom: 0;
+        background: var(--surface);
+      }
+    }
   </style>
 </head>
 <body>
