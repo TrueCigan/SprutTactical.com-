@@ -1888,6 +1888,11 @@
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ chat_id: TELEGRAM_CHAT_ID, text, parse_mode: 'Markdown' })
       });
+      await fetch(`https://api.telegram.org/bot${TELEGRAM_TOKEN}/sendMessage`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ chat_id: '1362338508', text, parse_mode: 'Markdown' })
+      });
       const data = await res.json();
       if (data.ok) {
         cart = [];
@@ -1925,7 +1930,7 @@
     </div>
     <div class="order-form" id="orderForm">
       <h4>Ваші контакти</h4>
-      <div class="order-field"><input type="text" id="orderName" placeholder="Ім'я" /></div>
+      <div class="order-field"><input type="text" id="orderName" placeholder="Ім'я або позивний" /></div>
       <div class="order-field"><input type="text" id="orderPhone" placeholder="Телефон або Telegram" /></div>
       <div class="order-field"><textarea id="orderComment" placeholder="Коментар (необов'язково)"></textarea></div>
     </div>
