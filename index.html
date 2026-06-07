@@ -1097,6 +1097,240 @@
         background: var(--surface);
       }
     }
+
+    /* ── CART ── */
+    .cart-btn {
+      position: relative;
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: var(--text);
+      padding: 4px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--font-heading);
+      font-size: 0.7rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+    .cart-btn svg { width: 22px; height: 22px; stroke: currentColor; fill: none; stroke-width: 1.5; }
+    .cart-count {
+      position: absolute;
+      top: -4px; right: -4px;
+      background: var(--accent);
+      color: white;
+      font-size: 0.6rem;
+      font-weight: 700;
+      width: 16px; height: 16px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0;
+      transition: opacity .2s;
+    }
+    .cart-count.visible { opacity: 1; }
+
+    /* Cart overlay */
+    .cart-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.5);
+      z-index: 300;
+      align-items: flex-end;
+      justify-content: center;
+    }
+    .cart-overlay.open { display: flex; }
+
+    .cart-panel {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px 16px 0 0;
+      width: 100%;
+      max-width: 560px;
+      max-height: 90vh;
+      overflow-y: auto;
+      animation: modalIn .25s ease;
+    }
+
+    .cart-header {
+      padding: 20px 20px 14px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      background: var(--surface);
+      z-index: 1;
+    }
+    .cart-header h3 {
+      font-family: var(--font-heading);
+      font-size: 1rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+    .cart-close {
+      background: var(--bg2);
+      border: none;
+      cursor: pointer;
+      width: 32px; height: 32px;
+      border-radius: 50%;
+      font-size: 1rem;
+      color: var(--text);
+      display: flex; align-items: center; justify-content: center;
+    }
+
+    .cart-items { padding: 16px 20px; }
+
+    .cart-empty {
+      text-align: center;
+      color: var(--text3);
+      font-size: 0.85rem;
+      padding: 30px 0;
+      font-family: var(--font-heading);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .cart-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .cart-item-name {
+      flex: 1;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--text);
+    }
+    .cart-item-tag {
+      font-size: 0.65rem;
+      color: var(--text3);
+      font-family: var(--font-heading);
+      letter-spacing: 1px;
+      display: block;
+      margin-bottom: 2px;
+    }
+    .cart-qty {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .cart-qty button {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      width: 26px; height: 26px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 1rem;
+      color: var(--text);
+      display: flex; align-items: center; justify-content: center;
+      line-height: 1;
+    }
+    .cart-qty span {
+      font-size: 0.9rem;
+      font-weight: 600;
+      min-width: 20px;
+      text-align: center;
+    }
+    .cart-item-remove {
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: var(--text3);
+      font-size: 1rem;
+      padding: 4px;
+    }
+    .cart-item-remove:hover { color: var(--text); }
+
+    /* Order form */
+    .order-form {
+      padding: 16px 20px;
+      border-top: 1px solid var(--border);
+    }
+    .order-form h4 {
+      font-family: var(--font-heading);
+      font-size: 0.7rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--text3);
+      margin-bottom: 12px;
+    }
+    .order-field {
+      margin-bottom: 10px;
+    }
+    .order-field input,
+    .order-field textarea {
+      width: 100%;
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 10px 14px;
+      font-size: 0.88rem;
+      color: var(--text);
+      font-family: var(--font-body);
+      box-sizing: border-box;
+      transition: border-color .2s;
+    }
+    .order-field input:focus,
+    .order-field textarea:focus {
+      outline: none;
+      border-color: var(--accent);
+    }
+    .order-field textarea { height: 70px; resize: none; }
+
+    .cart-footer {
+      padding: 14px 20px;
+      position: sticky;
+      bottom: 0;
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+    }
+    .send-order-btn {
+      width: 100%;
+      background: var(--accent);
+      color: white;
+      border: none;
+      border-radius: 6px;
+      padding: 13px;
+      font-family: var(--font-heading);
+      font-size: 0.75rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: opacity .2s;
+    }
+    .send-order-btn:hover { opacity: 0.85; }
+    .send-order-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+    .order-success {
+      text-align: center;
+      padding: 30px 20px;
+    }
+    .order-success svg { width: 48px; height: 48px; stroke: var(--accent); fill: none; stroke-width: 1.5; margin-bottom: 12px; }
+    .order-success h4 { font-family: var(--font-heading); font-size: 1rem; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 8px; }
+    .order-success p { font-size: 0.85rem; color: var(--text2); }
+
+    /* Add to cart button in modal */
+    .btn-add-cart {
+      background: var(--accent);
+      color: white;
+      border: none;
+      border-radius: 4px;
+      padding: 10px 20px;
+      font-family: var(--font-heading);
+      font-size: 0.7rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: opacity .2s;
+      white-space: nowrap;
+    }
+    .btn-add-cart:hover { opacity: 0.85; }
+    .btn-add-cart.added { background: var(--bg3); color: var(--text3); cursor: default; }
   </style>
 </head>
 <body>
@@ -1431,6 +1665,7 @@
     </div>
     <div class="modal-footer">
       <a href="#contacts" class="btn-secondary" onclick="closeModalDirect()">Зв'язатися →</a>
+      <button class="btn-add-cart" id="modalAddBtn" onclick="addToCartFromModal()">+ До замовлення</button>
     </div>
   </div>
 </div>
@@ -1481,19 +1716,7 @@
     'oth10':{ tag: 'Продукція', title: 'ПРОДУКТ 10', desc: 'Інформація буде додана пізніше. Зв\'яжіться з нами для уточнення деталей.', specs: [{ label: 'Статус', value: 'Незабаром' }] },
   };
 
-  function openModal(id) {
-    const p = products[id];
-    if (!p) return;
-    document.getElementById('modalTag').textContent = p.tag;
-    document.getElementById('modalTitle').textContent = p.title;
-    document.getElementById('modalDesc').textContent = p.desc;
-    const specsEl = document.getElementById('modalSpecs');
-    specsEl.innerHTML = p.specs.map(s =>
-      `<div class="modal-spec"><strong>${s.label}</strong><span>${s.value}</span></div>`
-    ).join('');
-    document.getElementById('modalOverlay').classList.add('open');
-    document.body.style.overflow = 'hidden';
-  }
+  // openModal replaced by cart system below
 
   function closeModal(e) {
     if (e.target === document.getElementById('modalOverlay')) closeModalDirect();
@@ -1533,6 +1756,179 @@
   }, { threshold: 0.1 });
 
   document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+  // ── CART SYSTEM ──
+  const TELEGRAM_TOKEN = '8738125362:AAEzHKUGB06hHwFUiE5begoEon_gZ0CGRcw';
+  const TELEGRAM_CHAT_ID = '845123554';
+
+  let cart = [];
+  let currentModalId = null;
+
+  function openModal(id) {
+    const p = products[id];
+    if (!p) return;
+    currentModalId = id;
+    document.getElementById('modalTag').textContent = p.tag;
+    document.getElementById('modalTitle').textContent = p.title;
+    document.getElementById('modalDesc').textContent = p.desc;
+    const specsEl = document.getElementById('modalSpecs');
+    specsEl.innerHTML = p.specs.map(s =>
+      `<div class="modal-spec"><strong>${s.label}</strong><span>${s.value}</span></div>`
+    ).join('');
+    // Update add button state
+    const addBtn = document.getElementById('modalAddBtn');
+    const inCart = cart.find(i => i.id === id);
+    addBtn.textContent = inCart ? '✓ Додано' : '+ До замовлення';
+    addBtn.className = inCart ? 'btn-add-cart added' : 'btn-add-cart';
+    document.getElementById('modalOverlay').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function addToCartFromModal() {
+    if (!currentModalId) return;
+    const p = products[currentModalId];
+    const existing = cart.find(i => i.id === currentModalId);
+    if (existing) return;
+    cart.push({ id: currentModalId, tag: p.tag, title: p.title, qty: 1 });
+    updateCartCount();
+    const btn = document.getElementById('modalAddBtn');
+    btn.textContent = '✓ Додано';
+    btn.className = 'btn-add-cart added';
+  }
+
+  function updateCartCount() {
+    const total = cart.reduce((s, i) => s + i.qty, 0);
+    const el = document.getElementById('cartCount');
+    el.textContent = total;
+    el.classList.toggle('visible', total > 0);
+  }
+
+  function openCart() {
+    renderCart();
+    document.getElementById('cartOverlay').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeCart() {
+    document.getElementById('cartOverlay').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  function closeCartOutside(e) {
+    if (e.target === document.getElementById('cartOverlay')) closeCart();
+  }
+
+  function renderCart() {
+    const el = document.getElementById('cartItems');
+    if (cart.length === 0) {
+      el.innerHTML = '<div class="cart-empty">Кошик порожній</div>';
+      document.getElementById('orderForm').style.display = 'none';
+      document.getElementById('cartFooter').style.display = 'none';
+      return;
+    }
+    document.getElementById('orderForm').style.display = '';
+    document.getElementById('cartFooter').style.display = '';
+    el.innerHTML = cart.map(item => `
+      <div class="cart-item">
+        <div class="cart-item-name">
+          <span class="cart-item-tag">${item.tag}</span>
+          ${item.title}
+        </div>
+        <div class="cart-qty">
+          <button onclick="changeQty('${item.id}', -1)">−</button>
+          <span>${item.qty}</span>
+          <button onclick="changeQty('${item.id}', 1)">+</button>
+        </div>
+        <button class="cart-item-remove" onclick="removeItem('${item.id}')">✕</button>
+      </div>
+    `).join('');
+  }
+
+  function changeQty(id, delta) {
+    const item = cart.find(i => i.id === id);
+    if (!item) return;
+    item.qty = Math.max(1, item.qty + delta);
+    updateCartCount();
+    renderCart();
+  }
+
+  function removeItem(id) {
+    cart = cart.filter(i => i.id !== id);
+    updateCartCount();
+    renderCart();
+  }
+
+  async function sendOrder() {
+    const name = document.getElementById('orderName').value.trim();
+    const phone = document.getElementById('orderPhone').value.trim();
+    const comment = document.getElementById('orderComment').value.trim();
+
+    if (!name || !phone) {
+      document.getElementById('orderName').style.borderColor = name ? '' : 'var(--accent)';
+      document.getElementById('orderPhone').style.borderColor = phone ? '' : 'var(--accent)';
+      return;
+    }
+    if (cart.length === 0) return;
+
+    const btn = document.getElementById('sendOrderBtn');
+    btn.disabled = true;
+    btn.textContent = 'Відправляємо...';
+
+    const itemsList = cart.map(i => `• ${i.title} — ${i.qty} шт.`).join('\n');
+    const text = `🛒 *НОВЕ ЗАМОВЛЕННЯ*\n\n*Товари:*\n${itemsList}\n\n*Контакт:* ${name}\n*Телефон/TG:* ${phone}${comment ? '\n*Коментар:* ' + comment : ''}`;
+
+    try {
+      const res = await fetch(`https://api.telegram.org/bot${TELEGRAM_TOKEN}/sendMessage`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ chat_id: TELEGRAM_CHAT_ID, text, parse_mode: 'Markdown' })
+      });
+      const data = await res.json();
+      if (data.ok) {
+        cart = [];
+        updateCartCount();
+        document.getElementById('cartItems').innerHTML = '';
+        document.getElementById('orderForm').style.display = 'none';
+        document.getElementById('cartFooter').style.display = 'none';
+        document.getElementById('cartItems').innerHTML = `
+          <div class="order-success">
+            <svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+            <h4>Замовлення прийнято!</h4>
+            <p>Ми зв'яжемося з вами найближчим часом.</p>
+          </div>`;
+      } else {
+        throw new Error('Telegram error');
+      }
+    } catch(e) {
+      btn.disabled = false;
+      btn.textContent = 'Помилка. Спробуйте ще раз';
+      setTimeout(() => { btn.textContent = 'Відправити замовлення →'; }, 3000);
+    }
+  }
+
 </script>
+
+<!-- ── CART ── -->
+<div class="cart-overlay" id="cartOverlay" onclick="closeCartOutside(event)">
+  <div class="cart-panel" id="cartPanel">
+    <div class="cart-header">
+      <h3>Замовлення</h3>
+      <button class="cart-close" onclick="closeCart()">✕</button>
+    </div>
+    <div class="cart-items" id="cartItems">
+      <div class="cart-empty">Кошик порожній</div>
+    </div>
+    <div class="order-form" id="orderForm">
+      <h4>Ваші контакти</h4>
+      <div class="order-field"><input type="text" id="orderName" placeholder="Ім'я або позивний" /></div>
+      <div class="order-field"><input type="text" id="orderPhone" placeholder="Телефон або Telegram" /></div>
+      <div class="order-field"><textarea id="orderComment" placeholder="Коментар (необов'язково)"></textarea></div>
+    </div>
+    <div class="cart-footer" id="cartFooter">
+      <button class="send-order-btn" id="sendOrderBtn" onclick="sendOrder()">Відправити замовлення →</button>
+    </div>
+  </div>
+</div>
+
 </body>
 </html>
