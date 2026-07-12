@@ -1035,6 +1035,83 @@
 
     .product-card { cursor: pointer; }
 
+    .product-price {
+      display: block;
+      margin-top: 8px;
+      font-family: var(--font-heading);
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      color: var(--accent2);
+    }
+
+    .modal-variants {
+      margin-bottom: 20px;
+    }
+    .modal-variants h4 {
+      font-family: var(--font-heading);
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--text3);
+      margin-bottom: 8px;
+    }
+    .variant-options {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .variant-btn {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 8px 14px;
+      font-family: var(--font-body);
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--text);
+      cursor: pointer;
+      transition: all .15s;
+    }
+    .variant-btn:hover { border-color: var(--accent); }
+    .variant-btn.active {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: white;
+    }
+    .modal-price {
+      font-family: var(--font-display);
+      font-size: 1.8rem;
+      letter-spacing: 1px;
+      color: var(--accent2);
+      margin-bottom: 20px;
+    }
+
+    .cart-item-price {
+      font-size: 0.8rem;
+      color: var(--text3);
+      margin-top: 2px;
+    }
+    .cart-total {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 0 12px;
+      font-family: var(--font-heading);
+      font-size: 0.9rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--text);
+    }
+    .cart-total span:last-child {
+      font-family: var(--font-display);
+      font-size: 1.3rem;
+      color: var(--accent2);
+      letter-spacing: 1px;
+    }
+
     @media (max-width: 600px) {
       .modal-overlay {
         padding: 0;
@@ -1502,8 +1579,9 @@
   <!-- Антени -->
   <div class="cat-panel" id="cat-ant">
     <div class="catalog-grid">
-      <div class="product-card" onclick="openModal('ant1')"><div class="product-img"><img src="6-7 рупор.jpg" alt="Рупорна антена 5.6–7.3 ГГц"><span class="product-tag">Антени</span></div><div class="product-info"><h3>РУПОРНА АНТЕНА 5.6–7.3 ГГц</h3><p>Варіації підсилення: 14 / 17 / 20 dBi</p></div></div>
-      <div class="product-card" onclick="openModal('ant2')"><div class="product-img"><img src="Рупор 5-6.jpg" alt="Рупорна антена 4.7–6.4 ГГц"><span class="product-tag">Антени</span></div><div class="product-info"><h3>РУПОРНА АНТЕНА 4.7–6.4 ГГц</h3><p>Варіації підсилення: 14 / 17 / 20 dBi</p></div></div>
+      <div class="product-card" onclick="openModal('ant1')"><div class="product-img"><img src="6-7 рупор.jpg" alt="Рупорна антена 5.6–7.3 ГГц"><span class="product-tag">Антени</span></div><div class="product-info"><h3>РУПОРНА АНТЕНА 5.6–7.3 ГГц</h3><p>Варіації підсилення: 14 / 18 / 21 dBi</p><span class="product-price">від 6000 ₴</span></div></div>
+      <div class="product-card" onclick="openModal('ant2')"><div class="product-img"><img src="Рупор 5-6.jpg" alt="Рупорна антена 4.7–6.4 ГГц"><span class="product-tag">Антени</span></div><div class="product-info"><h3>РУПОРНА АНТЕНА 4.7–6.4 ГГц</h3><p>Варіації підсилення: 14 / 18 / 21 dBi</p><span class="product-price">від 6500 ₴</span></div></div>
+      <div class="product-card" onclick="openModal('ant11')"><div class="product-img"><svg viewBox="0 0 24 24"><path d="M12 3v18M6 8l6-5 6 5M6 16l6 5 6-5"/></svg><span class="product-tag">Антени</span></div><div class="product-info"><h3>РУПОРНА АНТЕНА 7–8 ГГц</h3><p>Варіації підсилення: 14 / 18 / 21 dBi</p><span class="product-price">від 5500 ₴</span></div></div>
       <div class="product-card" onclick="openModal('ant3')"><div class="product-img"><svg viewBox="0 0 24 24"><path d="M5 12.5C5 8.36 8.36 5 12.5 5S20 8.36 20 12.5"/><path d="M8 12.5C8 10.01 10.01 8 12.5 8S17 10.01 17 12.5"/><circle cx="12.5" cy="12.5" r="1.5"/><line x1="12.5" y1="14" x2="12.5" y2="20"/></svg><span class="product-tag">Антени</span></div><div class="product-info"><h3>SPRUT A-15</h3><p>Всеспрямована антена для базових станцій.</p></div></div>
       <div class="product-card" onclick="openModal('ant4')"><div class="product-img"><svg viewBox="0 0 24 24"><path d="M5 12.5C5 8.36 8.36 5 12.5 5S20 8.36 20 12.5"/><path d="M8 12.5C8 10.01 10.01 8 12.5 8S17 10.01 17 12.5"/><circle cx="12.5" cy="12.5" r="1.5"/><line x1="12.5" y1="14" x2="12.5" y2="20"/></svg><span class="product-tag">Антени</span></div><div class="product-info"><h3>SPRUT A-20</h3><p>Антена для роботи в діапазоні GPS/ГЛОНАСС.</p></div></div>
       <div class="product-card" onclick="openModal('ant5')"><div class="product-img"><svg viewBox="0 0 24 24"><path d="M5 12.5C5 8.36 8.36 5 12.5 5S20 8.36 20 12.5"/><path d="M8 12.5C8 10.01 10.01 8 12.5 8S17 10.01 17 12.5"/><circle cx="12.5" cy="12.5" r="1.5"/><line x1="12.5" y1="14" x2="12.5" y2="20"/></svg><span class="product-tag">Антени</span></div><div class="product-info"><h3>SPRUT PA-3</h3><p>Панельна антена для стаціонарних позицій.</p></div></div>
@@ -1666,6 +1744,15 @@
     </div>
     <div class="modal-body">
       <p class="modal-desc" id="modalDesc"></p>
+      <div class="modal-variants" id="modalVariants" style="display:none">
+        <h4>Підсилення</h4>
+        <div class="variant-options" id="variantOptions"></div>
+      </div>
+      <div class="modal-variants" id="modalPolarizations" style="display:none">
+        <h4>Поляризація</h4>
+        <div class="variant-options" id="polarizationOptions"></div>
+      </div>
+      <div class="modal-price" id="modalPrice" style="display:none"></div>
       <div class="modal-specs" id="modalSpecs"></div>
     </div>
     <div class="modal-footer">
@@ -1698,8 +1785,9 @@
     'reb9':  { tag: 'Системи РЕБ', title: 'ОМАР-X', desc: 'Модульна система РЕБ з розширеним діапазоном. Модульна архітектура дозволяє нарощувати можливості під конкретні задачі.', specs: [{ label: 'Архітектура', value: 'модульна' }, { label: 'Діапазон', value: 'налаштовується' }, { label: 'Живлення', value: '12/220V' }, { label: 'Вага базова', value: '3.5 кг' }] },
     'reb10': { tag: 'Системи РЕБ', title: 'ОМАР-XL', desc: 'Стаціонарний комплекс для захисту великих об\'єктів та інфраструктури. Забезпечує захист у радіусі до 10 км.', specs: [{ label: 'Радіус дії', value: 'до 10 км' }, { label: 'Живлення', value: '380V / генератор' }, { label: 'Охолодження', value: 'активне' }, { label: 'Вага', value: '45 кг' }] },
     // Антени
-    'ant1':  { tag: 'Антени', title: 'РУПОРНА АНТЕНА 5.6–7.3 ГГц', desc: 'Рупорна антена з металевого хвилеводу у формі рупора, призначена для фокусування та направлення радіохвиль у вузький промінь. Матеріал — алюміній. Доступна у трьох варіаціях підсилення: 14, 17 та 20 dBi.', specs: [{ label: 'Діапазон (КСХ < 2)', value: '5.6–7.3 ГГц' }, { label: 'Діапазон (КСХ < 1.5)', value: '5.7–7.0 ГГц' }, { label: 'Підсилення', value: '14 / 17 / 20 dBi' }, { label: 'Поляризація', value: 'RHCP' }, { label: 'Потужність', value: '50 Вт' }, { label: 'Промінь ДС', value: '33°' }, { label: 'Вхідний опір', value: '50 Ом' }, { label: 'ККД', value: '90%' }, { label: 'Габарити', value: '135×82×82 мм' }, { label: 'Вага', value: '130 г' }, { label: 'Температура', value: '-40…+85 °C' }, { label: 'Матеріал', value: 'Алюміній' }] },
-    'ant2':  { tag: 'Антени', title: 'РУПОРНА АНТЕНА 4.7–6.4 ГГц', desc: 'Рупорна антена з металевого хвилеводу у формі рупора, призначена для фокусування та направлення радіохвиль у вузький промінь. Матеріал — алюміній.', specs: [{ label: 'Діапазон (КСХ < 2)', value: '4.7–6.4 ГГц' }, { label: 'Діапазон (КСХ < 1.5)', value: '4.8–6.3 ГГц' }, { label: 'Підсилення', value: '14 dBi' }, { label: 'Поляризація', value: 'RHCP' }, { label: 'Потужність', value: '50 Вт' }, { label: 'Промінь ДС', value: '33°' }, { label: 'Вхідний опір', value: '50 Ом' }, { label: 'ККД', value: '90%' }, { label: 'Габарити', value: '135×82×82 мм' }, { label: 'Вага', value: '180 г' }, { label: 'Температура', value: '-40…+85 °C' }, { label: 'Матеріал', value: 'Алюміній' }] },
+    'ant1':  { tag: 'Антени', title: 'РУПОРНА АНТЕНА 5.6–7.3 ГГц', desc: 'Рупорна антена з металевого хвилеводу у формі рупора, призначена для фокусування та направлення радіохвиль у вузький промінь. Матеріал — алюміній. Доступна у трьох варіаціях підсилення: 14, 18 та 21 dBi, а також у трьох варіаціях поляризації.', specs: [{ label: 'Діапазон (КСХ < 2)', value: '5.6–7.3 ГГц' }, { label: 'Діапазон (КСХ < 1.5)', value: '5.7–7.0 ГГц' }, { label: 'Підсилення', value: '14 / 18 / 21 dBi' }, { label: 'Потужність', value: '50 Вт' }, { label: 'Промінь ДС', value: '33°' }, { label: 'Вхідний опір', value: '50 Ом' }, { label: 'ККД', value: '90%' }, { label: 'Габарити', value: '135×82×82 мм' }, { label: 'Вага', value: '130 г' }, { label: 'Температура', value: '-40…+85 °C' }, { label: 'Матеріал', value: 'Алюміній' }], variants: [{ label: '14 dBi', price: 6000 }, { label: '18 dBi', price: 7000 }, { label: '21 dBi', price: 7500 }], polarizations: [{ label: 'RHCP', surcharge: 0 }, { label: 'LHCP', surcharge: 0 }, { label: 'RHCP+LHCP', surcharge: 500 }] },
+    'ant2':  { tag: 'Антени', title: 'РУПОРНА АНТЕНА 4.7–6.4 ГГц', desc: 'Рупорна антена з металевого хвилеводу у формі рупора, призначена для фокусування та направлення радіохвиль у вузький промінь. Матеріал — алюміній. Доступна у трьох варіаціях підсилення: 14, 18 та 21 dBi, а також у трьох варіаціях поляризації.', specs: [{ label: 'Діапазон (КСХ < 2)', value: '4.7–6.4 ГГц' }, { label: 'Діапазон (КСХ < 1.5)', value: '4.8–6.3 ГГц' }, { label: 'Підсилення', value: '14 / 18 / 21 dBi' }, { label: 'Потужність', value: '50 Вт' }, { label: 'Промінь ДС', value: '33°' }, { label: 'Вхідний опір', value: '50 Ом' }, { label: 'ККД', value: '90%' }, { label: 'Габарити', value: '135×82×82 мм' }, { label: 'Вага', value: '180 г' }, { label: 'Температура', value: '-40…+85 °C' }, { label: 'Матеріал', value: 'Алюміній' }], variants: [{ label: '14 dBi', price: 6500 }, { label: '18 dBi', price: 7000 }, { label: '21 dBi', price: 7500 }], polarizations: [{ label: 'RHCP', surcharge: 0 }, { label: 'LHCP', surcharge: 0 }, { label: 'RHCP+LHCP', surcharge: 500 }] },
+    'ant11': { tag: 'Антени', title: 'РУПОРНА АНТЕНА 7–8 ГГц', desc: 'Рупорна антена з металевого хвилеводу у формі рупора, призначена для фокусування та направлення радіохвиль у вузький промінь. Матеріал — алюміній. Доступна у трьох варіаціях підсилення: 14, 18 та 21 dBi, а також у трьох варіаціях поляризації.', specs: [{ label: 'Діапазон', value: '7–8 ГГц' }, { label: 'Підсилення', value: '14 / 18 / 21 dBi' }, { label: 'Потужність', value: '50 Вт' }, { label: 'Вхідний опір', value: '50 Ом' }, { label: 'Матеріал', value: 'Алюміній' }], variants: [{ label: '14 dBi', price: 5500 }, { label: '18 dBi', price: 6000 }, { label: '21 dBi', price: 6500 }], polarizations: [{ label: 'RHCP', surcharge: 0 }, { label: 'LHCP', surcharge: 0 }, { label: 'RHCP+LHCP', surcharge: 500 }] },
     'ant3':  { tag: 'Антени', title: 'SPRUT A-15', desc: 'Всеспрямована антена для базових станцій. Рівномірне покриття на 360° у горизонтальній площині.', specs: [{ label: 'Тип', value: 'всеспрямована' }, { label: 'Діапазон', value: '100–1000 МГц' }, { label: 'Підсилення', value: '5 dBi' }, { label: 'Вага', value: '280 г' }] },
     'ant4':  { tag: 'Антени', title: 'SPRUT A-20', desc: 'Антена для роботи в діапазоні GPS/ГЛОНАСС. Висока точність прийому сигналів навігаційних систем.', specs: [{ label: 'Діапазон', value: 'GPS L1/L2, ГЛОНАСС' }, { label: 'Підсилення', value: '28 dB LNA' }, { label: 'Роз\'єм', value: 'SMA' }, { label: 'Вага', value: '85 г' }] },
     'ant5':  { tag: 'Антени', title: 'SPRUT PA-3', desc: 'Панельна антена для стаціонарних позицій. Оптимальна для організації ліній зв\'язку між опорними пунктами.', specs: [{ label: 'Тип', value: 'панельна' }, { label: 'Діапазон', value: '700–2700 МГц' }, { label: 'Підсилення', value: '14 dBi' }, { label: 'Вага', value: '600 г' }] },
@@ -1768,11 +1856,19 @@
 
   let cart = [];
   let currentModalId = null;
+  let currentVariantIndex = 0;
+  let currentPolarizationIndex = 0;
+
+  function fmtPrice(n) {
+    return n.toLocaleString('uk-UA') + ' ₴';
+  }
 
   function openModal(id) {
     const p = products[id];
     if (!p) return;
     currentModalId = id;
+    currentVariantIndex = 0;
+    currentPolarizationIndex = 0;
     document.getElementById('modalTag').textContent = p.tag;
     document.getElementById('modalTitle').textContent = p.title;
     document.getElementById('modalDesc').textContent = p.desc;
@@ -1780,25 +1876,111 @@
     specsEl.innerHTML = p.specs.map(s =>
       `<div class="modal-spec"><strong>${s.label}</strong><span>${s.value}</span></div>`
     ).join('');
-    // Update add button state
-    const addBtn = document.getElementById('modalAddBtn');
-    const inCart = cart.find(i => i.id === id);
-    addBtn.textContent = inCart ? '✓ Додано' : '+ До замовлення';
-    addBtn.className = inCart ? 'btn-add-cart added' : 'btn-add-cart';
+
+    const variantsBlock = document.getElementById('modalVariants');
+    const polarizationsBlock = document.getElementById('modalPolarizations');
+    const priceBlock = document.getElementById('modalPrice');
+    if (p.variants && p.variants.length) {
+      variantsBlock.style.display = '';
+      priceBlock.style.display = '';
+      renderVariantOptions();
+    } else {
+      variantsBlock.style.display = 'none';
+    }
+    if (p.polarizations && p.polarizations.length) {
+      polarizationsBlock.style.display = '';
+      priceBlock.style.display = '';
+      renderPolarizationOptions();
+    } else {
+      polarizationsBlock.style.display = 'none';
+    }
+    if ((p.variants && p.variants.length) || (p.polarizations && p.polarizations.length)) {
+      updateModalPrice();
+    } else {
+      priceBlock.style.display = 'none';
+    }
+
+    updateModalAddBtn();
     document.getElementById('modalOverlay').classList.add('open');
     document.body.style.overflow = 'hidden';
+  }
+
+  function renderVariantOptions() {
+    const p = products[currentModalId];
+    const el = document.getElementById('variantOptions');
+    el.innerHTML = p.variants.map((v, i) =>
+      `<button type="button" class="variant-btn${i === currentVariantIndex ? ' active' : ''}" onclick="selectVariant(${i})">${v.label}</button>`
+    ).join('');
+  }
+
+  function renderPolarizationOptions() {
+    const p = products[currentModalId];
+    const el = document.getElementById('polarizationOptions');
+    el.innerHTML = p.polarizations.map((v, i) =>
+      `<button type="button" class="variant-btn${i === currentPolarizationIndex ? ' active' : ''}" onclick="selectPolarization(${i})">${v.label}${v.surcharge ? ` (+${v.surcharge} ₴)` : ''}</button>`
+    ).join('');
+  }
+
+  function selectVariant(i) {
+    currentVariantIndex = i;
+    renderVariantOptions();
+    updateModalPrice();
+    updateModalAddBtn();
+  }
+
+  function selectPolarization(i) {
+    currentPolarizationIndex = i;
+    renderPolarizationOptions();
+    updateModalPrice();
+    updateModalAddBtn();
+  }
+
+  function currentPrice() {
+    const p = products[currentModalId];
+    let price = p.variants ? p.variants[currentVariantIndex].price : 0;
+    if (p.polarizations) price += p.polarizations[currentPolarizationIndex].surcharge;
+    return price;
+  }
+
+  function updateModalPrice() {
+    document.getElementById('modalPrice').textContent = fmtPrice(currentPrice());
+  }
+
+  function cartKey(id, variantIndex, polarizationIndex) {
+    const p = products[id];
+    if (!p.variants && !p.polarizations) return id;
+    return `${id}__${p.variants ? variantIndex : 'x'}__${p.polarizations ? polarizationIndex : 'x'}`;
+  }
+
+  function updateModalAddBtn() {
+    const addBtn = document.getElementById('modalAddBtn');
+    const key = cartKey(currentModalId, currentVariantIndex, currentPolarizationIndex);
+    const inCart = cart.find(i => i.key === key);
+    addBtn.textContent = inCart ? '✓ Додано' : '+ До замовлення';
+    addBtn.className = inCart ? 'btn-add-cart added' : 'btn-add-cart';
   }
 
   function addToCartFromModal() {
     if (!currentModalId) return;
     const p = products[currentModalId];
-    const existing = cart.find(i => i.id === currentModalId);
+    const key = cartKey(currentModalId, currentVariantIndex, currentPolarizationIndex);
+    const existing = cart.find(i => i.key === key);
     if (existing) return;
-    cart.push({ id: currentModalId, tag: p.tag, title: p.title, qty: 1 });
+    const variant = p.variants ? p.variants[currentVariantIndex] : null;
+    const polarization = p.polarizations ? p.polarizations[currentPolarizationIndex] : null;
+    const titleParts = [];
+    if (variant) titleParts.push(variant.label);
+    if (polarization) titleParts.push(polarization.label);
+    cart.push({
+      key,
+      id: currentModalId,
+      tag: p.tag,
+      title: titleParts.length ? `${p.title} (${titleParts.join(', ')})` : p.title,
+      price: (variant || polarization) ? currentPrice() : null,
+      qty: 1
+    });
     updateCartCount();
-    const btn = document.getElementById('modalAddBtn');
-    btn.textContent = '✓ Додано';
-    btn.className = 'btn-add-cart added';
+    updateModalAddBtn();
   }
 
   function updateCartCount() {
@@ -1823,6 +2005,10 @@
     if (e.target === document.getElementById('cartOverlay')) closeCart();
   }
 
+  function cartTotal() {
+    return cart.reduce((s, i) => s + (i.price || 0) * i.qty, 0);
+  }
+
   function renderCart() {
     const el = document.getElementById('cartItems');
     if (cart.length === 0) {
@@ -1838,27 +2024,42 @@
         <div class="cart-item-name">
           <span class="cart-item-tag">${item.tag}</span>
           ${item.title}
+          ${item.price ? `<div class="cart-item-price">${fmtPrice(item.price)} / шт.</div>` : ''}
         </div>
         <div class="cart-qty">
-          <button onclick="changeQty('${item.id}', -1)">−</button>
+          <button onclick="changeQty('${item.key}', -1)">−</button>
           <span>${item.qty}</span>
-          <button onclick="changeQty('${item.id}', 1)">+</button>
+          <button onclick="changeQty('${item.key}', 1)">+</button>
         </div>
-        <button class="cart-item-remove" onclick="removeItem('${item.id}')">✕</button>
+        <button class="cart-item-remove" onclick="removeItem('${item.key}')">✕</button>
       </div>
     `).join('');
+    const total = cartTotal();
+    const footer = document.getElementById('cartFooter');
+    let totalEl = document.getElementById('cartTotal');
+    if (total > 0) {
+      if (!totalEl) {
+        totalEl = document.createElement('div');
+        totalEl.className = 'cart-total';
+        totalEl.id = 'cartTotal';
+        footer.insertBefore(totalEl, footer.firstChild);
+      }
+      totalEl.innerHTML = `<span>Разом</span><span>${fmtPrice(total)}</span>`;
+    } else if (totalEl) {
+      totalEl.remove();
+    }
   }
 
-  function changeQty(id, delta) {
-    const item = cart.find(i => i.id === id);
+  function changeQty(key, delta) {
+    const item = cart.find(i => i.key === key);
     if (!item) return;
     item.qty = Math.max(1, item.qty + delta);
     updateCartCount();
     renderCart();
   }
 
-  function removeItem(id) {
-    cart = cart.filter(i => i.id !== id);
+  function removeItem(key) {
+    cart = cart.filter(i => i.key !== key);
     updateCartCount();
     renderCart();
   }
@@ -1879,8 +2080,9 @@
     btn.disabled = true;
     btn.textContent = 'Відправляємо...';
 
-    const itemsList = cart.map(i => `• ${i.title} — ${i.qty} шт.`).join('\n');
-    const text = `🛒 *НОВЕ ЗАМОВЛЕННЯ*\n\n*Товари:*\n${itemsList}\n\n*Контакт:* ${name}\n*Телефон/TG:* ${phone}${comment ? '\n*Коментар:* ' + comment : ''}`;
+    const itemsList = cart.map(i => `• ${i.title} — ${i.qty} шт.${i.price ? ` × ${fmtPrice(i.price)} = ${fmtPrice(i.price * i.qty)}` : ''}`).join('\n');
+    const total = cartTotal();
+    const text = `🛒 *НОВЕ ЗАМОВЛЕННЯ*\n\n*Товари:*\n${itemsList}${total > 0 ? `\n\n*Разом:* ${fmtPrice(total)}` : ''}\n\n*Контакт:* ${name}\n*Телефон/TG:* ${phone}${comment ? '\n*Коментар:* ' + comment : ''}`;
 
     try {
       const res = await fetch(`https://api.telegram.org/bot${TELEGRAM_TOKEN}/sendMessage`, {
