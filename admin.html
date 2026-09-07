@@ -1229,12 +1229,41 @@ function parseProducts() {
     const titleM = body.match(/title:\s*'([^']*)'/);
     const descM = body.match(/desc:\s*'([^']*)'/);
     const specsM = [...body.matchAll(/\{\s*label:\s*'([^']*)',\s*value:\s*'([^']*)'\s*\}/g)];
+    // Деякі товари мають додаткові поля (variants/polarizations для цін і опцій),
+    // які ця адмінка не редагує напряму — зберігаємо їх "як є", щоб не втратити при збереженні.
+    let extraRaw = '';
+    const vIdx = body.indexOf('variants:');
+    const pIdx = body.indexOf('polarizations:');
+    const extraStart = vIdx !== -1 ? vIdx : pIdx;
+    if (extraStart !== -1) {
+      extraRaw = body.slice(extraStart).trim().replace(/,\s*$/, '');
+    }
     products[id] = {
       tag: tagM ? tagM[1] : '',
       title: titleM ? titleM[1] : '',
       desc: descM ? descM[1] : '',
-      specs: specsM.map(s => ({ label: s[1], value: s[2] }))
+      specs: specsM.map(s => ({ label: s[1], value: s[2] })),
+      extraRaw
     };
+  }
+  parseCatalogCards();
+}
+
+// ── PARSE CATALOG CARD MARKUP (photos, short blurb, price badge) ──
+// Ці поля живуть окремо від об'єкта products (прямо в розмітці карток каталогу).
+// Якщо їх не зберегти тут, наступна публікація перезапише картки generic-шаблоном
+// і зітре реальні фото/ціни/короткі описи.
+function parseCatalogCards() {
+  const cardRegex = /<div class="product-card" onclick="openModal\('([^']+)'\)"><div class="product-img">(?:<img src="([^"]*)"[^>]*>|<svg[\s\S]*?<\/svg>)<span class="product-tag">[^<]*<\/span><\/div><div class="product-info"><h3>[^<]*<\/h3><p>([^<]*)<\/p>(?:<span class="product-price">([^<]*)<\/span>)?<\/div><\/div>/g;
+  let cm;
+  while ((cm = cardRegex.exec(workingHTML)) !== null) {
+    const [, id, img, cardText, cardPrice] = cm;
+    if (!products[id]) continue;
+    // img/shortDesc відповідають полям форми редагування (p_img / p_short_desc).
+    if (img) products[id].img = img;
+    if (cardText) products[id].shortDesc = cardText;
+    // Ціновий бейдж форма не редагує — зберігаємо "як є", щоб не зникав при публікації.
+    if (cardPrice) products[id].cardPrice = cardPrice;
   }
 }
 
@@ -1412,7 +1441,9 @@ function saveProduct() {
     id = prefix + num;
   }
 
-  products[id] = { tag, title, shortDesc, desc, img, specs };
+  // Зберігаємо поля, яких немає в формі (ціни/варіанти/поляризації), якщо вони вже були.
+  const preserved = products[id] || {};
+  products[id] = { ...preserved, tag, title, shortDesc, desc, img, specs };
   markChange();
   renderAllProducts();
   closeDrawer();
@@ -1451,7 +1482,8 @@ function markChange() {
 function buildProductsJS() {
   const lines = Object.entries(products).map(([id, p]) => {
     const specsStr = p.specs.map(s => `{ label: '${esc(s.label)}', value: '${esc(s.value)}' }`).join(', ');
-    return `    '${id}': { tag: '${esc(p.tag)}', title: '${esc(p.title)}', desc: '${esc(p.desc)}', specs: [${specsStr}] }`;
+    const extra = p.extraRaw ? `, ${p.extraRaw}` : '';
+    return `    '${id}': { tag: '${esc(p.tag)}', title: '${esc(p.title)}', desc: '${esc(p.desc)}', specs: [${specsStr}]${extra} }`;
   });
   return `const products = {\n${lines.join(',\n')}\n  };`;
 }
@@ -1463,9 +1495,12 @@ function buildProductCardHTML(id, p) {
     reb: `<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>`,
     oth: `<svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg>`
   };
-  const imgPart = p.img ? `<img src="${p.img}" alt="${esc(p.title)}">` : iconMap[cat];
+  // Реальне фото товару (якщо було) має пріоритет над генеричною іконкою.
+  const imgPart = p.img ? `<img src="${esc(p.img)}" alt="${esc(p.title)}">` : iconMap[cat];
+  // Короткий текст на картці (якщо був заданий окремо від повного опису) — інакше повний опис.
   const shortD = p.shortDesc || p.desc;
-  return `      <div class="product-card" onclick="openModal('${id}')"><div class="product-img">${imgPart}<span class="product-tag">${esc(p.tag)}</span></div><div class="product-info"><h3>${esc(p.title)}</h3><p>${esc(shortD)}</p></div></div>`;
+  const priceHTML = p.cardPrice ? `<span class="product-price">${esc(p.cardPrice)}</span>` : '';
+  return `      <div class="product-card" onclick="openModal('${id}')"><div class="product-img">${imgPart}<span class="product-tag">${esc(p.tag)}</span></div><div class="product-info"><h3>${esc(p.title)}</h3><p>${esc(shortD)}</p>${priceHTML}</div></div>`;
 }
 
 function buildCatalogSection() {
