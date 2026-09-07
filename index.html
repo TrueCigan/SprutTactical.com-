@@ -1718,6 +1718,7 @@
         <div class="variant-options" id="polarizationOptions"></div>
       </div>
       <div class="modal-price" id="modalPrice" style="display:none"></div>
+      <div id="modalDatasheet" style="display:none;margin:14px 0"></div>
       <div class="modal-specs" id="modalSpecs"></div>
     </div>
     <div class="modal-footer">
@@ -1747,9 +1748,9 @@
     'reb7': { tag: 'Системи РЕБ', title: 'СКАТ-1', desc: 'Автономний РЕБ-комплекс з дистанційним керуванням. Може працювати без оператора в автоматичному режимі.', specs: [{ label: 'Режим роботи', value: 'автономний / ручний' }, { label: 'Керування', value: 'дистанційне до 500 м' }, { label: 'Живлення', value: 'акумулятор 8 год' }, { label: 'Вага', value: '5.5 кг' }] },
     'reb8': { tag: 'Системи РЕБ', title: 'СКАТ-3', desc: 'Возимий комплекс РЕБ для бронетехніки. Розроблений для встановлення на БТР, БМП та інші бойові машини.', specs: [{ label: 'Монтаж', value: 'бронетехніка' }, { label: 'Живлення', value: '24V бортова мережа' }, { label: 'Радіус дії', value: 'до 2.5 км' }, { label: 'Захист', value: 'IP67' }] },
     'reb9': { tag: 'Системи РЕБ', title: 'ОМАР-X', desc: 'Модульна система РЕБ з розширеним діапазоном. Модульна архітектура дозволяє нарощувати можливості під конкретні задачі.', specs: [{ label: 'Архітектура', value: 'модульна' }, { label: 'Діапазон', value: 'налаштовується' }, { label: 'Живлення', value: '12/220V' }, { label: 'Вага базова', value: '3.5 кг' }] },
-    'ant1': { tag: 'Антени', title: 'РУПОРНА АНТЕНА 5.6–7.3 ГГц', desc: 'Рупорна антена з металевого хвилеводу у формі рупора, призначена для фокусування та направлення радіохвиль у вузький промінь. Матеріал — алюміній. Доступна у трьох варіаціях підсилення: 14, 18 та 21 dBi, а також у трьох варіаціях поляризації.', specs: [{ label: 'Діапазон (КСХ < 2)', value: '5.6–7.3 ГГц' }, { label: 'Діапазон (КСХ < 1.5)', value: '5.7–7.0 ГГц' }, { label: 'Підсилення', value: '14 / 18 / 21 dBi' }, { label: 'Потужність', value: '50 Вт' }, { label: 'Промінь ДС', value: '33°' }, { label: 'Вхідний опір', value: '50 Ом' }, { label: 'ККД', value: '90%' }, { label: 'Габарити', value: '135×82×82 мм' }, { label: 'Вага', value: '130 г' }, { label: 'Температура', value: '-40…+85 °C' }, { label: 'Матеріал', value: 'Алюміній' }], variants: [{ label: '14 dBi', price: 6000 }, { label: '18 dBi', price: 7000 }, { label: '21 dBi', price: 7500 }], polarizations: [{ label: 'RHCP', surcharge: 0 }, { label: 'LHCP', surcharge: 0 }, { label: 'RHCP+LHCP', surcharge: 500 }] },
-    'ant2': { tag: 'Антени', title: 'РУПОРНА АНТЕНА 4.7–6.4 ГГц', desc: 'Рупорна антена з металевого хвилеводу у формі рупора, призначена для фокусування та направлення радіохвиль у вузький промінь. Матеріал — алюміній. Доступна у трьох варіаціях підсилення: 14, 18 та 21 dBi, а також у трьох варіаціях поляризації.', specs: [{ label: 'Діапазон (КСХ < 2)', value: '4.7–6.4 ГГц' }, { label: 'Діапазон (КСХ < 1.5)', value: '4.8–6.3 ГГц' }, { label: 'Підсилення', value: '14 / 18 / 21 dBi' }, { label: 'Потужність', value: '50 Вт' }, { label: 'Промінь ДС', value: '33°' }, { label: 'Вхідний опір', value: '50 Ом' }, { label: 'ККД', value: '90%' }, { label: 'Габарити', value: '135×82×82 мм' }, { label: 'Вага', value: '180 г' }, { label: 'Температура', value: '-40…+85 °C' }, { label: 'Матеріал', value: 'Алюміній' }], variants: [{ label: '14 dBi', price: 6500 }, { label: '18 dBi', price: 7000 }, { label: '21 dBi', price: 7500 }], polarizations: [{ label: 'RHCP', surcharge: 0 }, { label: 'LHCP', surcharge: 0 }, { label: 'RHCP+LHCP', surcharge: 500 }] },
-    'ant11': { tag: 'Антени', title: 'РУПОРНА АНТЕНА 7–8 ГГц', desc: 'Рупорна антена з металевого хвилеводу у формі рупора, призначена для фокусування та направлення радіохвиль у вузький промінь. Матеріал — алюміній. Доступна у трьох варіаціях підсилення: 14, 18 та 21 dBi, а також у трьох варіаціях поляризації.', specs: [{ label: 'Діапазон', value: '7–8 ГГц' }, { label: 'Підсилення', value: '14 / 18 / 21 dBi' }, { label: 'Потужність', value: '50 Вт' }, { label: 'Вхідний опір', value: '50 Ом' }, { label: 'Матеріал', value: 'Алюміній' }], variants: [{ label: '14 dBi', price: 5500 }, { label: '18 dBi', price: 6000 }, { label: '21 dBi', price: 6500 }], polarizations: [{ label: 'RHCP', surcharge: 0 }, { label: 'LHCP', surcharge: 0 }, { label: 'RHCP+LHCP', surcharge: 500 }] },
+    'ant1': { tag: 'Антени', title: 'РУПОРНА АНТЕНА 5.6–7.3 ГГц', desc: 'Рупорна антена з металевого хвилеводу у формі рупора, призначена для фокусування та направлення радіохвиль у вузький промінь. Матеріал — алюміній. Доступна у трьох варіаціях підсилення: 14, 18 та 21 dBi, а також у трьох варіаціях поляризації.', specs: [{ label: 'Діапазон (КСХ < 2)', value: '5.6–7.3 ГГц' }, { label: 'Діапазон (КСХ < 1.5)', value: '5.7–7.0 ГГц' }, { label: 'Підсилення', value: '14 / 18 / 21 dBi' }, { label: 'Потужність', value: '50 Вт' }, { label: 'Промінь ДС', value: '33°' }, { label: 'Вхідний опір', value: '50 Ом' }, { label: 'ККД', value: '90%' }, { label: 'Габарити', value: '135×82×82 мм' }, { label: 'Вага', value: '130 г' }, { label: 'Температура', value: '-40…+85 °C' }, { label: 'Матеріал', value: 'Алюміній' }], variants: [{ label: '14 dBi', price: 6000 }, { label: '18 dBi', price: 7000 }, { label: '21 dBi', price: 7500 }], polarizations: [{ label: 'RHCP', surcharge: 0 }, { label: 'LHCP', surcharge: 0 }, { label: 'RHCP+LHCP', surcharge: 500 }], datasheets: ['datasheets/ST_6-7-14.pdf', 'datasheets/ST_6-7-18.pdf', 'datasheets/ST_6-7-21.pdf'] },
+    'ant2': { tag: 'Антени', title: 'РУПОРНА АНТЕНА 4.7–6.4 ГГц', desc: 'Рупорна антена з металевого хвилеводу у формі рупора, призначена для фокусування та направлення радіохвиль у вузький промінь. Матеріал — алюміній. Доступна у трьох варіаціях підсилення: 14, 18 та 21 dBi, а також у трьох варіаціях поляризації.', specs: [{ label: 'Діапазон (КСХ < 2)', value: '4.7–6.4 ГГц' }, { label: 'Діапазон (КСХ < 1.5)', value: '4.8–6.3 ГГц' }, { label: 'Підсилення', value: '14 / 18 / 21 dBi' }, { label: 'Потужність', value: '50 Вт' }, { label: 'Промінь ДС', value: '33°' }, { label: 'Вхідний опір', value: '50 Ом' }, { label: 'ККД', value: '90%' }, { label: 'Габарити', value: '135×82×82 мм' }, { label: 'Вага', value: '180 г' }, { label: 'Температура', value: '-40…+85 °C' }, { label: 'Матеріал', value: 'Алюміній' }], variants: [{ label: '14 dBi', price: 6500 }, { label: '18 dBi', price: 7000 }, { label: '21 dBi', price: 7500 }], polarizations: [{ label: 'RHCP', surcharge: 0 }, { label: 'LHCP', surcharge: 0 }, { label: 'RHCP+LHCP', surcharge: 500 }], datasheets: ['datasheets/ST_5-6-14.pdf', 'datasheets/ST_5-6-18.pdf', 'datasheets/ST_5-6-21.pdf'] },
+    'ant11': { tag: 'Антени', title: 'РУПОРНА АНТЕНА 7–8 ГГц', desc: 'Рупорна антена з металевого хвилеводу у формі рупора, призначена для фокусування та направлення радіохвиль у вузький промінь. Матеріал — алюміній. Доступна у трьох варіаціях підсилення: 14, 18 та 21 dBi, а також у трьох варіаціях поляризації.', specs: [{ label: 'Діапазон', value: '7–8 ГГц' }, { label: 'Підсилення', value: '14 / 18 / 21 dBi' }, { label: 'Потужність', value: '50 Вт' }, { label: 'Вхідний опір', value: '50 Ом' }, { label: 'Матеріал', value: 'Алюміній' }], variants: [{ label: '14 dBi', price: 5500 }, { label: '18 dBi', price: 6000 }, { label: '21 dBi', price: 6500 }], polarizations: [{ label: 'RHCP', surcharge: 0 }, { label: 'LHCP', surcharge: 0 }, { label: 'RHCP+LHCP', surcharge: 500 }], datasheets: ['datasheets/ST_7-8-14.pdf', 'datasheets/ST_7-8-18.pdf', 'datasheets/ST_7-8-21.pdf'] },
     'ant3': { tag: 'Антени', title: 'SPRUT A-15', desc: 'Всеспрямована антена для базових станцій. Рівномірне покриття на 360° у горизонтальній площині.', specs: [{ label: 'Тип', value: 'всеспрямована' }, { label: 'Діапазон', value: '100–1000 МГц' }, { label: 'Підсилення', value: '5 dBi' }, { label: 'Вага', value: '280 г' }] },
     'ant4': { tag: 'Антени', title: 'SPRUT A-20', desc: 'Антена для роботи в діапазоні GPS/ГЛОНАСС. Висока точність прийому сигналів навігаційних систем.', specs: [{ label: 'Діапазон', value: 'GPS L1/L2, ГЛОНАСС' }, { label: 'Підсилення', value: '28 dB LNA' }, { label: 'Вага', value: '85 г' }] },
     'ant5': { tag: 'Антени', title: 'SPRUT PA-3', desc: 'Панельна антена для стаціонарних позицій. Оптимальна для організації ліній зв\\', specs: [{ label: 'Тип', value: 'панельна' }, { label: 'Діапазон', value: '700–2700 МГц' }, { label: 'Підсилення', value: '14 dBi' }, { label: 'Вага', value: '600 г' }] },
@@ -1844,8 +1845,7 @@
       renderVariantOptions();
     } else {
       variantsBlock.style.display = 'none';
-    }
-    if (p.polarizations && p.polarizations.length) {
+    }    if (p.polarizations && p.polarizations.length) {
       polarizationsBlock.style.display = '';
       priceBlock.style.display = '';
       renderPolarizationOptions();
@@ -1859,8 +1859,26 @@
     }
 
     updateModalAddBtn();
+    updateModalDatasheet();
     document.getElementById('modalOverlay').classList.add('open');
     document.body.style.overflow = 'hidden';
+  }
+
+  function updateModalDatasheet() {
+    const p = products[currentModalId];
+    const el = document.getElementById('modalDatasheet');
+    if (p.datasheets && p.datasheets.length) {
+      const idx = p.variants ? currentVariantIndex : 0;
+      const file = p.datasheets[idx] || p.datasheets[0];
+      el.style.display = '';
+      el.innerHTML = `<a href="${file}" target="_blank" class="btn-secondary" style="display:inline-flex;align-items:center;gap:8px;text-decoration:none">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Завантажити технічний паспорт (PDF)
+      </a>`;
+    } else {
+      el.style.display = 'none';
+      el.innerHTML = '';
+    }
   }
 
   function renderVariantOptions() {
@@ -1884,6 +1902,7 @@
     renderVariantOptions();
     updateModalPrice();
     updateModalAddBtn();
+    updateModalDatasheet();
   }
 
   function selectPolarization(i) {
