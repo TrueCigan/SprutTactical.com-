@@ -1851,8 +1851,8 @@
   document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 
   // ── CART SYSTEM ──
-  const TELEGRAM_TOKEN = '8738125362:AAEzHKUGB06hHwFUiE5begoEon_gZ0CGRcw';
-  const TELEGRAM_CHAT_ID = '845123554';
+  // Заказы теперь отправляются через Cloudflare Worker — токен бота там и в исходном коде сайта не хранится.
+  const WORKER_URL = 'https://sprut-orders.kostyaprochan.workers.dev/';
 
   let cart = [];
   let currentModalId = null;
@@ -2085,15 +2085,10 @@
     const text = `🛒 *НОВЕ ЗАМОВЛЕННЯ*\n\n*Товари:*\n${itemsList}${total > 0 ? `\n\n*Разом:* ${fmtPrice(total)}` : ''}\n\n*Контакт:* ${name}\n*Телефон/TG:* ${phone}${comment ? '\n*Коментар:* ' + comment : ''}`;
 
     try {
-      const res = await fetch(`https://api.telegram.org/bot${TELEGRAM_TOKEN}/sendMessage`, {
+      const res = await fetch(WORKER_URL, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ chat_id: TELEGRAM_CHAT_ID, text, parse_mode: 'Markdown' })
-      });
-      await fetch(`https://api.telegram.org/bot${TELEGRAM_TOKEN}/sendMessage`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ chat_id: '1362338508', text, parse_mode: 'Markdown' })
+        body: JSON.stringify({ text })
       });
       const data = await res.json();
       if (data.ok) {
