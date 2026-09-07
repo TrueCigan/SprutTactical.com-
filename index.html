@@ -931,6 +931,9 @@
       border-radius: 10px;
       max-width: 560px;
       width: 100%;
+      max-height: calc(100vh - 40px);
+      display: flex;
+      flex-direction: column;
       overflow: hidden;
       animation: modalIn .25s ease;
     }
@@ -947,6 +950,7 @@
       justify-content: space-between;
       align-items: flex-start;
       gap: 12px;
+      flex-shrink: 0;
     }
 
     .modal-tag {
@@ -986,6 +990,8 @@
 
     .modal-body {
       padding: 24px;
+      overflow-y: auto;
+      flex: 1;
     }
 
     .modal-specs {
@@ -1031,6 +1037,7 @@
       display: flex;
       gap: 10px;
       justify-content: flex-end;
+      flex-shrink: 0;
     }
 
     .product-card { cursor: pointer; }
@@ -1852,7 +1859,7 @@
 
   // ── CART SYSTEM ──
   // Заказы теперь отправляются через Cloudflare Worker — токен бота там и в исходном коде сайта не хранится.
-  const WORKER_URL = 'https://sprut-orders.kostyaprochan.workers.dev/';
+  const WORKER_URL = 'https://YOUR-WORKER-NAME.YOUR-SUBDOMAIN.workers.dev';
 
   let cart = [];
   let currentModalId = null;
