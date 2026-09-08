@@ -1105,6 +1105,14 @@
         <input type="text" class="field-input" id="p_img" placeholder="назва-файлу.jpg або https://..." />
       </div>
 
+      <div class="form-group">
+        <label class="field-label">Наявність</label>
+        <select class="field-input" id="p_in_stock">
+          <option value="true">В наявності</option>
+          <option value="false">Немає в наявності</option>
+        </select>
+      </div>
+
       <div class="section-divider"></div>
 
       <div class="form-group">
@@ -1229,6 +1237,8 @@ function parseProducts() {
     const titleM = body.match(/title:\s*'([^']*)'/);
     const descM = body.match(/desc:\s*'([^']*)'/);
     const specsM = [...body.matchAll(/\{\s*label:\s*'([^']*)',\s*value:\s*'([^']*)'\s*\}/g)];
+    const inStockM = body.match(/inStock:\s*(true|false)/);
+    const inStock = inStockM ? inStockM[1] === 'true' : true;
     // Деякі товари мають додаткові поля (variants/polarizations для цін і опцій),
     // які ця адмінка не редагує напряму — зберігаємо їх "як є", щоб не втратити при збереженні.
     let extraRaw = '';
@@ -1237,12 +1247,15 @@ function parseProducts() {
     const extraStart = vIdx !== -1 ? vIdx : pIdx;
     if (extraStart !== -1) {
       extraRaw = body.slice(extraStart).trim().replace(/,\s*$/, '');
+      // inStock додається як окреме поле форми — прибираємо його з "сирого" хвоста, щоб не задвоїти.
+      extraRaw = extraRaw.replace(/,?\s*inStock:\s*(true|false)/, '').trim().replace(/,\s*$/, '');
     }
     products[id] = {
       tag: tagM ? tagM[1] : '',
       title: titleM ? titleM[1] : '',
       desc: descM ? descM[1] : '',
       specs: specsM.map(s => ({ label: s[1], value: s[2] })),
+      inStock,
       extraRaw
     };
   }
@@ -1315,6 +1328,13 @@ function renderAllProducts() {
   renderCategory('other');
 }
 
+function toggleStock(id, checked) {
+  if (!products[id]) return;
+  products[id].inStock = checked;
+  markChange();
+  renderAllProducts();
+}
+
 function renderCategory(cat) {
   const list = document.getElementById('list-' + cat);
   const items = Object.entries(products).filter(([id]) => id.startsWith(cat === 'other' ? 'oth' : cat));
@@ -1340,6 +1360,10 @@ function renderCategory(cat) {
         <div class="product-item-tag">${p.tag}</div>
         <div class="product-item-name">${p.title}</div>
       </div>
+      <label style="display:flex;align-items:center;gap:6px;font-size:0.78rem;cursor:pointer;user-select:none;white-space:nowrap" title="Клік — перемкнути наявність">
+        <input type="checkbox" ${p.inStock !== false ? 'checked' : ''} onchange="toggleStock('${id}', this.checked)" />
+        ${p.inStock !== false ? 'В наявності' : 'Немає'}
+      </label>
       <div class="product-item-actions">
         <button class="btn-icon" onclick="openEditProduct('${id}')" title="Редагувати">
           <svg viewBox="0 0 24 24"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
@@ -1361,6 +1385,7 @@ function openAddProduct() {
   document.getElementById('p_short_desc').value = '';
   document.getElementById('p_desc').value = '';
   document.getElementById('p_img').value = '';
+  document.getElementById('p_in_stock').value = 'true';
   document.getElementById('p_category').value = 'ant';
   document.getElementById('specList').innerHTML = '';
   addSpecRow();
@@ -1378,6 +1403,7 @@ function openEditProduct(id) {
   document.getElementById('p_short_desc').value = p.shortDesc || '';
   document.getElementById('p_desc').value = p.desc;
   document.getElementById('p_img').value = p.img || '';
+  document.getElementById('p_in_stock').value = p.inStock === false ? 'false' : 'true';
 
   // detect category from id
   const cat = id.startsWith('reb') ? 'reb' : id.startsWith('oth') ? 'other' : 'ant';
@@ -1422,6 +1448,7 @@ function saveProduct() {
   const shortDesc = document.getElementById('p_short_desc').value.trim();
   const desc = document.getElementById('p_desc').value.trim();
   const img = document.getElementById('p_img').value.trim();
+  const inStock = document.getElementById('p_in_stock').value === 'true';
   const cat = document.getElementById('p_category').value;
   let id = document.getElementById('editProductId').value;
 
@@ -1443,7 +1470,7 @@ function saveProduct() {
 
   // Зберігаємо поля, яких немає в формі (ціни/варіанти/поляризації), якщо вони вже були.
   const preserved = products[id] || {};
-  products[id] = { ...preserved, tag, title, shortDesc, desc, img, specs };
+  products[id] = { ...preserved, tag, title, shortDesc, desc, img, inStock, specs };
   markChange();
   renderAllProducts();
   closeDrawer();
@@ -1483,7 +1510,8 @@ function buildProductsJS() {
   const lines = Object.entries(products).map(([id, p]) => {
     const specsStr = p.specs.map(s => `{ label: '${esc(s.label)}', value: '${esc(s.value)}' }`).join(', ');
     const extra = p.extraRaw ? `, ${p.extraRaw}` : '';
-    return `    '${id}': { tag: '${esc(p.tag)}', title: '${esc(p.title)}', desc: '${esc(p.desc)}', specs: [${specsStr}]${extra} }`;
+    const inStock = p.inStock === false ? 'false' : 'true';
+    return `    '${id}': { tag: '${esc(p.tag)}', title: '${esc(p.title)}', desc: '${esc(p.desc)}', specs: [${specsStr}], inStock: ${inStock}${extra} }`;
   });
   return `const products = {\n${lines.join(',\n')}\n  };`;
 }
@@ -1500,7 +1528,9 @@ function buildProductCardHTML(id, p) {
   // Короткий текст на картці (якщо був заданий окремо від повного опису) — інакше повний опис.
   const shortD = p.shortDesc || p.desc;
   const priceHTML = p.cardPrice ? `<span class="product-price">${esc(p.cardPrice)}</span>` : '';
-  return `      <div class="product-card" onclick="openModal('${id}')"><div class="product-img">${imgPart}<span class="product-tag">${esc(p.tag)}</span></div><div class="product-info"><h3>${esc(p.title)}</h3><p>${esc(shortD)}</p>${priceHTML}</div></div>`;
+  const inStock = p.inStock !== false;
+  const stockHTML = `<span class="stock-badge ${inStock ? 'in-stock' : 'out-of-stock'}">${inStock ? 'В наявності' : 'Немає в наявності'}</span>`;
+  return `      <div class="product-card" onclick="openModal('${id}')"><div class="product-img">${imgPart}<span class="product-tag">${esc(p.tag)}</span></div><div class="product-info"><h3>${esc(p.title)}</h3><p>${esc(shortD)}</p>${stockHTML}${priceHTML}</div></div>`;
 }
 
 function buildCatalogSection() {
