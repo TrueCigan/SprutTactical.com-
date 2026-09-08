@@ -1267,7 +1267,7 @@ function parseProducts() {
 // Якщо їх не зберегти тут, наступна публікація перезапише картки generic-шаблоном
 // і зітре реальні фото/ціни/короткі описи.
 function parseCatalogCards() {
-  const cardRegex = /<div class="product-card" onclick="openModal\('([^']+)'\)"><div class="product-img">(?:<img src="([^"]*)"[^>]*>|<svg[\s\S]*?<\/svg>)<span class="product-tag">[^<]*<\/span><\/div><div class="product-info"><h3>[^<]*<\/h3><p>([^<]*)<\/p>(?:<span class="product-price">([^<]*)<\/span>)?<\/div><\/div>/g;
+  const cardRegex = /<div class="product-card" onclick="openModal\('([^']+)'\)"><div class="product-img">(?:<img src="([^"]*)"[^>]*>|<svg[\s\S]*?<\/svg>)<span class="product-tag">[^<]*<\/span><\/div><div class="product-info"><h3>[^<]*<\/h3><p>([^<]*)<\/p>(?:<span class="stock-badge[^"]*">[^<]*<\/span>)?(?:<span class="product-price">([^<]*)<\/span>)?<\/div><\/div>/g;
   let cm;
   while ((cm = cardRegex.exec(workingHTML)) !== null) {
     const [, id, img, cardText, cardPrice] = cm;
